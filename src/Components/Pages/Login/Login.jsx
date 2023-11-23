@@ -1,7 +1,51 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+
+import { Link, useNavigate } from 'react-router-dom';
+import UseAuth from '../../Hooks/UseAuth';
+import Swal from 'sweetalert2';
 
 const Login = () => {
+    const {Google,In} = UseAuth()
+    const nav = useNavigate()
+    const from = location?.state?.from?.pathname || '/'
+    const handleSignIN = (e)=>{
+      const email = e.target.email.value
+      const password = e.target.password.value
+      In(email, password)
+      .then((res) => {
+        console.log(res.user);
+        nav(from, { replace: true });
+        
+      })
+      .catch((err) => {
+        console.log(err);
+        alert('Sign in failed ');
+      });
+    }
+
+    const handleGoogle = ()=>{
+      Google()
+      .then(res => {
+       Swal.fire({
+         title: "Your account have been created.",
+         width: 600,
+         padding: "3em",
+         color: "#716add",
+         background: "#fff url(/images/trees.png)",
+         backdrop: `
+                 rgba(0,0,123,0.4)
+                 url("/images/nyan-cat.gif")
+                 left top
+                 no-repeat
+               `,
+       });
+       nav(from, { replace: true });
+       setTimeout(() => {
+         location.reload();
+       }, 3000);
+      })
+      .catch()
+}
+
     return (
         <div className='min-h-screen w-full bg-[#00ADB5] p-6  flex justify-center  items-center'>
             <div className='mx-auto  max-w-md  sm:min-w-[440px] bg-white shadow-2xl  p-8 rounded-lg py-4'>
@@ -16,6 +60,7 @@ const Login = () => {
            <form
      
       className="form  mt-4"
+      onSubmit={handleSignIN}
     >
       
       
@@ -48,7 +93,7 @@ const Login = () => {
     </form> 
     <div className="divider">OR</div>
     <button
-        
+        onClick={handleGoogle}
         className=" bg-white hover:bg-[#EEEEEE] border-2 border-[#393E46] w-full text-[#393E46] font-bold py-2 flex items-center justify-center gap-3 px-4 rounded-md mt-4"
       >
 

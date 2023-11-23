@@ -23,12 +23,15 @@ const Navbar = () => {
       >
         Products
       </NavLink>
-      <NavLink
+      {
+        user? '':<NavLink
         className="text-lg hover:text-[#EEEEEE] rounded-lg hover:bg-[#00ADB5] px-3 py-2 font-semibold text-[#00ADB5]  ml-2 "
         to={"/login"}
       >
         Login
       </NavLink>
+      }
+      
     </>
   );
   return (
@@ -85,12 +88,15 @@ const Navbar = () => {
       >
         Products
       </NavLink>
-      <NavLink
+      {
+        user? '': <NavLink
         className="text-lg   font-semibold text-[#00ADB5] hover:border-b-[3px] hover:border-[#EEEEEE] border-b-[6px] border-[#393E46] ml-7 "
         to={"/login"}
       >
         Login
-      </NavLink></ul>
+      </NavLink>
+      }
+     </ul>
         </div>
         <div className={`${user ? '':'hidden'}`}>
           <div className="dropdown dropdown-end">
@@ -101,10 +107,11 @@ const Navbar = () => {
               tabIndex={0}
               className="btn btn-ghost  btn-circle avatar"
             >
-              <div className="w-10 rounded-full">
+              <div className="w-10 rounded-full border-2 border-[#00ADB5]">
                 <img
                   alt="Tailwind CSS Navbar component"
-                  src="/images/user.png"
+                  src={user?.photoURL}
+                  className=" rounded-full"
                 />
               </div>
             </label>
