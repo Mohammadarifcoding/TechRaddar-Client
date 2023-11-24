@@ -12,6 +12,19 @@ const Login = () => {
       const password = e.target.password.value
       In(email, password)
       .then((res) => {
+         Swal.fire({
+          title: "Your account have been created.",
+          width: 600,
+          padding: "3em",
+          color: "#716add",
+          background: "#fff url(/images/trees.png)",
+          backdrop: `
+                  rgba(0,0,123,0.4)
+                  url("/images/nyan-cat.gif")
+                  left top
+                  no-repeat
+                `,
+        });
         console.log(res.user);
         nav(from, { replace: true });
         
@@ -25,24 +38,22 @@ const Login = () => {
     const handleGoogle = ()=>{
       Google()
       .then(res => {
-       Swal.fire({
-         title: "Your account have been created.",
-         width: 600,
-         padding: "3em",
-         color: "#716add",
-         background: "#fff url(/images/trees.png)",
-         backdrop: `
-                 rgba(0,0,123,0.4)
-                 url("/images/nyan-cat.gif")
-                 left top
-                 no-repeat
-               `,
-       });
-       nav(from, { replace: true });
-       setTimeout(() => {
-         location.reload();
-       }, 3000);
-      })
+         Swal.fire({
+          title: "Your account have been created.",
+          width: 600,
+          padding: "3em",
+          color: "#716add",
+          background: "#fff url(/images/trees.png)",
+          backdrop: `
+                  rgba(0,0,123,0.4)
+                  url("/images/nyan-cat.gif")
+                  left top
+                  no-repeat
+                `,
+        });
+        nav(from, { replace: true });
+       
+       })
       .catch()
 }
 

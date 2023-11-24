@@ -36,18 +36,18 @@ const DashBoard = () => {
   return (
  <>
 {/* Big screen dashboard */}
-    <div className="lg:flex p-3 hidden  bg-[#222831] min-h-screen">
-      <div className="lg:w-[300px] xl:w-[350px] 2xl:w-[400px] min-h-[95vh] px-3 py-3  rounded-xl bg-[#EEEEEE] ">
+    <div className="xl:flex p-3 hidden  bg-[#222831] min-h-screen">
+      <div className="lg:w-[300px] xl:w-[300px] 2xl:w-[350px] min-h-[95vh] px-3 py-3  rounded-xl bg-[#EEEEEE] ">
         <div className="w-full h-full  rounded-xl">
           <div className="flex justify-center pt-5 pb-3 gap-3">
             <img
-              className="lg:w-[55px] 2xl:w-[70px] bg-[#393E46] rounded-lg"
+              className="lg:w-[50px] 2xl:w-[60px] bg-[#393E46] rounded-lg"
               src={user.photoURL}
               alt=""
             />
             <div>
               <h2 className="font-semibold xl:text-lg 2xl:text-xl">Hello 👋</h2>
-              <p className="text-xl xl:text-2xl 2xl:text-3xl font-bold">
+              <p className="text-xl xl:text-2xl 2xl:text-[27px] font-bold">
                 {user.displayName}
               </p>
             </div>
@@ -64,12 +64,12 @@ const DashBoard = () => {
 
 {/* Mobile screen dashboard */}
 
-    <div className="drawer lg:hidden bg-[#222831] min-h-screen">
+    <div className="drawer xl:hidden bg-[#222831] min-h-screen">
   <input id="my-drawer-3" type="checkbox" className="drawer-toggle" /> 
   <div className="drawer-content flex flex-col">
     {/* Navbar */}
     <div className="w-full navbar border-b-4 border-[#00ADB5] ">
-      <div className="flex-none lg:hidden">
+      <div className="flex-none xl:hidden">
         <label htmlFor="my-drawer-3"  className="btn btn-square btn-ghost">
           <CgMenuGridO className="text-[#00ADB5] text-2xl"></CgMenuGridO>
         </label>

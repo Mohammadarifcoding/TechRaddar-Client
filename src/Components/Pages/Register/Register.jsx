@@ -9,6 +9,7 @@ import axios from "axios";
 const Register = () => {
   const { creatUser, update , Google } = UseAuth();
   const navigate = useNavigate();
+  const  [regLoading,setRegLoading] = useState(false)
   const [fullImage, setFullImage] = useState([]);
   const [storedImage, setStoredImage] = useState(
     localStorage.getItem("userImage")
@@ -37,6 +38,7 @@ const Register = () => {
   });
   const handleRegister = async (e) => {
     e.preventDefault();
+    setRegLoading(true)
     const image = fullImage;
     console.log(image);
     const result = await axios.post(
@@ -59,6 +61,7 @@ const Register = () => {
     console.log(img);
 
     if (password.length < 6) {
+      setRegLoading(false)
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -66,6 +69,7 @@ const Register = () => {
       });
       return;
     } else if (!/[A-Z]/.test(password)) {
+      setRegLoading(false)
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -77,7 +81,8 @@ const Register = () => {
     creatUser(email, password)
       .then((res) => {
         console.log(res.user);
-        update(Name, img);
+        update(Name, img).then().catch()
+        setRegLoading(false)
 
         Swal.fire({
           title: "Your account have been created.",
@@ -98,6 +103,7 @@ const Register = () => {
         }, 3000);
       })
       .catch((err) => {
+        setRegLoading(false)
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -105,9 +111,12 @@ const Register = () => {
         });
       });
   };
+
+  
  const handelGoogle = ()=>{
        Google()
        .then(res => {
+        setRegLoading(true)
         Swal.fire({
           title: "Your account have been created.",
           width: 600,
@@ -122,11 +131,32 @@ const Register = () => {
                 `,
         });
         navigate('/')
-        setTimeout(() => {
-          location.reload();
-        }, 3000);
+       
        })
-       .catch()
+       .catch(res => {
+        setRegLoading(false)
+       })
+ }
+ if(regLoading){
+  return (
+    <div className="flex justify-center items-center mt-[40vh]">
+<div className="spinnerContainer ">
+  <div className="spinner" />
+  <div className="loader">
+    <p>loading</p>
+    <div className="words">
+      <span className="word">Getting your Data</span>
+      <span className="word">Creating Account</span>
+      <span className="word">Updating Account</span>
+      <span className="word">Creating Your Profile</span>
+      <span className="word">Getting the Website</span>
+    </div>
+  </div>
+</div>
+    </div>
+   
+
+  )
  }
   return (
     <div className="min-h-screen w-full bg-[#00ADB5]  flex justify-center  items-center py-6">
@@ -143,13 +173,13 @@ const Register = () => {
           <div {...getRootProps()} className="relative flex justify-center">
             <input name="img"  {...getInputProps()} />
             <div
-              className={`dropzone border-2 border-[#00ADB5] w-[100px]  h-[100px] rounded-full text-center cursor-pointer`}
+              className={`dropzone border-2 border-[#00ADB5] w-[100px]  h-[100px] rounded-full text-center mb-2 cursor-pointer`}
             >
               {previewImage ? (
                 <img
                   src={previewImage}
                   alt="Uploaded Image"
-                  className=" mx-auto rounded-full h-full"
+                  className=" mx-auto  rounded-full h-full"
                 />
               ) : (
                 <div className="mx-auto rounded-full bg-[#EEEEEE] h-full">
@@ -163,32 +193,32 @@ const Register = () => {
             </div>
           </div>
           <label className="relative ">
-            <p className="py-2 text-lg font-bold">Name</p>
+            
             <input
               required
               name="Name"
-              placeholder="ex : ABC"
+              placeholder="Enter your Name"
               type="text"
               className="input w-full p-2 mb-2 focus:outline-none focus:border-[#00ADB5] border-2 border-gray-400 rounded-lg"
             />
           </label>
           <label className="relative ">
-            <p className="py-2 text-lg font-bold">Email</p>
+            
             <input
               required
               name="email"
-              placeholder="ex : abc@gmail.com"
+              placeholder="Enter your Email"
               type="email"
               className="input w-full p-2 mb-2 focus:outline-none focus:border-[#00ADB5] border-2 border-gray-400 rounded-lg"
             />
           </label>
 
           <label className="relative">
-            <p className="py-2 text-lg font-bold">Password</p>
+            
             <input
               required
               name="password"
-              placeholder="ex : PassWord1"
+              placeholder="Enter your Password"
               type="password"
               className="input w-full p-2 mb-2 focus:outline-none focus:border-[#00ADB5] border-2 border-gray-400 rounded-lg"
             />
