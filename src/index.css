@@ -42,6 +42,24 @@
     animation: secondcolorRun 2s infinite; /* Adjust timing and animation style as desired */
   }
 
+
+/* Featured section button */
+ @keyframes fillHeart {
+  0% {
+    color: #00ADB5; /* Change to the initial color */
+  }
+  50% {
+    color: #393E46; /* Change to the alternating color */
+  }
+  100% {
+    color: #00ADB5; /* Back to the initial color */
+  }
+}
+
+/* Apply the animation to the heart icon */
+.heart-icon {
+  animation: fillHeart 2s infinite; /* Change the duration as needed */
+}    
 /* For the loading animation */
 .spinnerContainer {
     display: flex;

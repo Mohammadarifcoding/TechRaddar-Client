@@ -3,7 +3,8 @@
     "Product_name": "Samsung Galaxy S21 Ultra",
     "Product_image": "https://i.ibb.co/7gY693w/new-smartphone-balancing-with-podium-1.jpg",
     "Tags": ["smartphone", "samsung", "flagship"],
-    "Owner_email": "owner1@example.com",
+    "Owner_email": "owner1@gmail.com",
+    "ownerName": "Sophia",
     "Date": "2023-11-10T08:15:30.000Z",
     "Status": false,
     "Description": [
@@ -34,7 +35,8 @@
     "Product_name": "Dell XPS 15",
     "Product_image": "https://i.ibb.co/KLKCx8W/modern-stationary-collection-arrangement-1-1.jpg",
     "Tags": ["laptop", "dell", "high-performance"],
-    "Owner_email": "owner1@example.com",
+    "Owner_email": "owner1@gmail.com",
+    "ownerName": "Sophia",
     "Date": "2023-11-10T08:15:30.000Z",
     "Status": false,
     "Description": [
@@ -60,12 +62,14 @@
     },
     "Product_id": 1002,
     "Featured": true
+
   },
   {
     "Product_name": "Apple MacBook Pro",
     "Product_image": "https://i.ibb.co/vVZtJkH/closeup-shot-open-laptop-dark-surface-work-from-home-concept-1.jpg",
     "Tags": ["laptop", "apple", "high-end"],
-    "Owner_email": "owner1@example.com",
+    "Owner_email": "owner1@gmail.com",
+    "ownerName": "Sophia",
     "Date": "2023-11-11T09:20:45.000Z",
     "Status": true,
     "Description": [
@@ -90,13 +94,15 @@
       "Ebay": "https://www.ebay.com/b/Apple-MacBook-Pro-16-16-9-in-Screen/111422/bn_7117197171"
     },
     "Product_id": 1003,
-    "Featured": false
+    "Featured": true
+
   },
   {
     "Product_name": "DJI Mavic Air 2",
     "Product_image": "https://i.ibb.co/0mQTtdr/various-hi-tech-devices-table-1.jpg",
     "Tags": ["drone", "dji", "aerial-photography"],
-    "Owner_email": "owner1@example.com",
+    "Owner_email": "owner1@gmail.com",
+    "ownerName": "Sophia",
     "Date": "2023-11-12T10:25:50.000Z",
     "Status": true,
     "Description": [
@@ -121,13 +127,14 @@
       "Ebay": "https://www.ebay.com/p/4037974125"
     },
     "Product_id": 1004,
-    "Featured": true
+    "Featured": false
   },
   {
     "Product_name": "Oculus Quest 2",
     "Product_image": "https://i.ibb.co/DbXz3rq/photo-virtual-reality-glasses-office-table-1.jpg",
     "Tags": ["vr", "oculus", "virtual-reality"],
-    "Owner_email": "owner1@example.com",
+    "Owner_email": "owner1@gmail.com",
+    "ownerName": "Sophia",
     "Date": "2023-11-13T11:30:55.000Z",
     "Status": true,
     "Description": [
@@ -152,13 +159,14 @@
       "Ebay": "https://www.ebay.com/b/Oculus-Quest-2-VR-Headsets/183068/bn_7117581374"
     },
     "Product_id": 1005,
-    "Featured": true
+    "Featured": false
   },
   {
     "Product_name": "Apple Watch Series 7",
     "Product_image": "https://i.ibb.co/3Y531xs/smartwatch-submerged-1.jpg",
     "Tags": ["smartwatch", "apple", "wearable-tech"],
-    "Owner_email": "owner2@example.com",
+    "Owner_email": "owner2@gmail.com",
+    "ownerName": "Liam",
     "Date": "2023-11-14T12:35:00.000Z",
     "Status": false,
     "Description": [
@@ -189,7 +197,8 @@
     "Product_name": "DJI Phantom 4 Pro",
     "Product_image": "https://i.ibb.co/fDHPPxr/white-drone-hovering-bright-blue-sky-1.jpg",
     "Tags": ["drone", "dji", "professional"],
-    "Owner_email": "owner2@example.com",
+    "Owner_email": "owner2@gmail.com",
+    "ownerName": "Liam",
     "Date": "2023-11-12T10:25:50.000Z",
     "Status": true,
     "Description": [
@@ -215,12 +224,14 @@
     },
     "Product_id": 1007,
     "Featured": true
+
   },
   {
     "Product_name": "Samsung QLED Q80A TV",
     "Product_image": "https://i.ibb.co/LgY1Lr6/2150757455-1.jpg",
     "Tags": ["tv", "samsung", "qled"],
-    "Owner_email": "owner2@example.com",
+    "Owner_email": "owner2@gmail.com",
+    "ownerName": "Liam",
     "Date": "2023-11-13T11:30:55.000Z",
     "Status": true,
     "Description": [
@@ -248,10 +259,11 @@
     "Featured": false
   },
   {
-    "Product_name": "Logitech G Pro Mechanical Keyboard",
+    "Product_name": "Logitech G Pro Keyboard",
     "Product_image": "https://i.ibb.co/C2VgJp4/high-angle-blue-keyboard-with-lights-1.jpg",
     "Tags": ["keyboard", "logitech", "gaming"],
-    "Owner_email": "owner2@example.com",
+    "Owner_email": "owner2@gmail.com",
+    "ownerName": "Liam",
     "Date": "2023-11-14T12:35:00.000Z",
     "Status": false,
     "Description": [
@@ -276,13 +288,14 @@
       "Ebay": "https://www.ebay.com/p/17021691094"
     },
     "Product_id": 1009,
-    "Featured": true
+    "Featured": false
   },
   {
-    "Product_name": "Sony WH-1000XM4 Wireless Headphones",
+    "Product_name": "Sony WH-1000XM4  Headphones",
     "Product_image": "https://i.ibb.co/gWGhcND/minimal-home-workspace-design-1.jpg",
     "Tags": ["headphones", "sony", "wireless"],
-    "Owner_email": "owner2@example.com",
+    "Owner_email": "owner2@gmail.com",
+    "ownerName": "Liam",
     "Date": "2023-11-15T13:40:15.000Z",
     "Status": true,
     "Description": [
@@ -310,10 +323,11 @@
     "Featured": false
   },
   {
-    "Product_name": "Amazon Echo Dot (4th Gen)",
+    "Product_name": "Amazon Echo Dot ",
     "Product_image": "https://i.ibb.co/rb3VpLw/large-round-white-bluetooth-speaker-gray-laptop-smartphone-side-1.jpg",
     "Tags": ["smart-speaker", "amazon", "voice-assistant"],
-    "Owner_email": "owner3@example.com",
+    "Owner_email": "owner3@gmail.com",
+    "ownerName": "Olivia",
     "Date": "2023-11-16T14:45:30.000Z",
     "Status": true,
     "Description": [
@@ -338,13 +352,14 @@
       "Ebay": "https://www.ebay.com/p/15041518546"
     },
     "Product_id": 1011,
-    "Featured": true
+    "Featured": false
   },
   {
-    "Product_name": "Canon EOS R5 Mirrorless Camera",
+    "Product_name": "Canon EOS R5  Camera",
     "Product_image": "https://i.ibb.co/g9cqRCB/high-angle-photo-camera-indoors-still-life-1.jpg",
     "Tags": ["camera", "canon", "mirrorless"],
-    "Owner_email": "owner3@example.com",
+    "Owner_email": "owner3@gmail.com",
+    "ownerName": "Olivia",
     "Date": "2023-11-17T15:50:45.000Z",
     "Status": false,
     "Description": [
@@ -375,7 +390,8 @@
     "Product_name": "LG OLED C1 4K TV",
     "Product_image": "https://i.ibb.co/x38BxNr/1162332-ORH85-K0-1.jpg",
     "Tags": ["tv", "lg", "oled", "4k"],
-    "Owner_email": "owner3@example.com",
+    "Owner_email": "owner3@gmail.com",
+    "ownerName": "Olivia",
     "Date": "2023-11-18T16:55:00.000Z",
     "Status": true,
     "Description": [
@@ -400,13 +416,14 @@
       "Ebay": "https://www.ebay.com/itm/325060788030"
     },
     "Product_id": 1013,
-    "Featured": true
+    "Featured": false
   },
   {
-    "Product_name": "Razer BlackWidow Elite Gaming Keyboard",
+    "Product_name": "Razer BlackWidow Elite ",
     "Product_image": "https://i.ibb.co/wSmLvcF/view-neon-illuminated-gaming-desk-setup-with-keyboard-1.jpg",
     "Tags": ["keyboard", "razer", "gaming"],
-    "Owner_email": "owner3@example.com",
+    "Owner_email": "owner3@gmail.com",
+    "ownerName": "Olivia",
     "Date": "2023-11-19T17:00:15.000Z",
     "Status": true,
     "Description": [
@@ -434,10 +451,11 @@
     "Featured": false
   },
   {
-    "Product_name": "Apple iPad Pro (2021)",
+    "Product_name": "Apple iPad Pro ",
     "Product_image": "https://i.ibb.co/XDKKc0h/29811-1.jpg",
     "Tags": ["tablet", "apple", "high-performance"],
-    "Owner_email": "owner3@example.com",
+    "Owner_email": "owner3@gmail.com",
+    "ownerName": "Olivia",
     "Date": "2023-11-20T18:05:30.000Z",
     "Status": false,
     "Description": [
@@ -462,13 +480,14 @@
       "Ebay": "https://www.ebay.com/b/Apple-iPad-Pro-5th-Generation/171485/bn_7117720194"
     },
     "Product_id": 1015,
-    "Featured": true
+    "Featured": false
   },
   {
     "Product_name": "Sony PlayStation 5",
     "Product_image": "https://i.ibb.co/nnchShg/high-angle-gaming-controllers-arrangement-23-2149829179.jpg",
     "Tags": ["gaming-console", "sony", "next-gen"],
-    "Owner_email": "owner4@example.com",
+    "Owner_email": "owner4@gmail.com",
+    "ownerName": "Noah",
     "Date": "2023-11-21T19:10:45.000Z",
     "Status": true,
     "Description": [
@@ -496,10 +515,11 @@
     "Featured": false
   },
   {
-    "Product_name": "Bose QuietComfort 45 Wireless Headphones",
+    "Product_name": "Bose QuietComfort 45 ",
     "Product_image": "https://i.ibb.co/0nQzTBJ/still-life-tech-device-23-2150722608.jpg",
     "Tags": ["headphones", "bose", "noise-cancelling"],
-    "Owner_email": "owner4@example.com",
+    "Owner_email": "owner4@gmail.com",
+    "ownerName": "Noah",
     "Date": "2023-11-22T20:15:00.000Z",
     "Status": true,
     "Description": [
@@ -524,13 +544,14 @@
       "Ebay": "https://www.ebay.com/p/19049321717"
     },
     "Product_id": 1017,
-    "Featured": true
+    "Featured": false
   },
   {
-    "Product_name": "Alienware Area-51m R2 Gaming Laptop",
+    "Product_name": "Alienware Area-51m R2 ",
     "Product_image": "https://i.ibb.co/Js0KgPV/display-with-some-device-table-140725-8405.jpg",
     "Tags": ["laptop", "alienware", "gaming"],
-    "Owner_email": "owner4@example.com",
+    "Owner_email": "owner4@gmail.com",
+    "ownerName": "Noah",
     "Date": "2023-11-23T21:20:15.000Z",
     "Status": false,
     "Description": [
@@ -555,13 +576,15 @@
       "Ebay": "https://www.ebay.com/itm/134628236457"
     },
     "Product_id": 1018,
-    "Featured": false
+    "Featured": true
+
   },
   {
-    "Product_name": "NVIDIA GeForce RTX 3080 Graphics Card",
+    "Product_name": "NVIDIA GeForce RTX 3080 ",
     "Product_image": "https://i.ibb.co/VBk0VYV/high-angle-laptop-hard-drive-arrangement-23-2149417022.jpg",
     "Tags": ["graphics-card", "nvidia", "gaming"],
-    "Owner_email": "owner4@example.com",
+    "Owner_email": "owner4@gmail.com",
+    "ownerName": "Noah",
     "Date": "2023-11-24T22:25:30.000Z",
     "Status": true,
     "Description": [
@@ -586,13 +609,14 @@
       "Ebay": "https://www.ebay.com/p/4040934334"
     },
     "Product_id": 1019,
-    "Featured": true
+    "Featured": false
   },
   {
-    "Product_name": "Anker PowerCore 26800 Portable Charger",
+    "Product_name": "Anker PowerCore 26800 ",
     "Product_image": "https://i.ibb.co/ky126vL/external-hard-disk-drive-connect-laptop-53876-16205.jpg",
     "Tags": ["charger", "anker", "portable"],
-    "Owner_email": "owner5@example.com",
+    "Owner_email": "owner5@gmail.com",
+    "ownerName": "Ava" ,
     "Date": "2023-11-25T23:30:45.000Z",
     "Status": false,
     "Description": [
@@ -620,10 +644,11 @@
     "Featured": false
   },
   {
-    "Product_name": "Samsung Odyssey G9 Gaming Monitor",
+    "Product_name": "Samsung Odyssey G9",
     "Product_image": "https://i.ibb.co/6rfnBr9/view-computer-monitor-display-23-2150757317.jpg",
     "Tags": ["monitor", "samsung", "gaming"],
-    "Owner_email": "owner5@example.com",
+    "Owner_email": "owner5@gmail.com",
+    "ownerName": "Ava" ,
     "Date": "2023-11-26T00:35:00.000Z",
     "Status": true,
     "Description": [
@@ -649,12 +674,14 @@
     },
     "Product_id": 1021,
     "Featured": true
+
   },
   {
-    "Product_name": "Fitbit Charge 5 Fitness Tracker",
+    "Product_name": "Fitbit Charge 5  Tracker",
     "Product_image": "https://i.ibb.co/3fm43DC/futuristic-technology-equipment-illuminated-digital-display-shining-brightly-generated-by-ai-188544.jpg",
     "Tags": ["fitness-tracker", "fitbit", "health"],
-    "Owner_email": "owner5@example.com",
+    "Owner_email": "owner5@gmail.com",
+    "ownerName": "Ava" ,
     "Date": "2023-11-27T01:40:15.000Z",
     "Status": true,
     "Description": [
@@ -685,7 +712,8 @@
     "Product_name": "Dell XPS 13 Laptop",
     "Product_image": "https://i.ibb.co/zbvMpB7/laptop-device-with-minimalist-monochrome-background-23-2150763337.jpg",
     "Tags": ["laptop", "dell", "ultrabook"],
-    "Owner_email": "owner5@example.com",
+    "Owner_email": "owner5@gmail.com",
+    "ownerName": "Ava" ,
     "Date": "2023-11-28T02:45:30.000Z",
     "Status": false,
     "Description": [
@@ -710,13 +738,14 @@
       "Ebay": "https://www.ebay.com/b/Dell-XPS-13-9360-PC-Ultrabooks/177/bn_106584279"
     },
     "Product_id": 1023,
-    "Featured": true
+    "Featured": false
   },
   {
     "Product_name": "Nintendo Switch OLED Model",
     "Product_image": "https://i.ibb.co/pzjgDBQ/af0b035b-cdde-43b3-8739-24b4771df61e-CR0-0-800-600-PT0-SX800-V1.webp",
     "Tags": ["gaming-console", "nintendo", "portable"],
-    "Owner_email": "owner5@example.com",
+    "Owner_email": "owner5@gmail.com",
+    "ownerName": "Ava" ,
     "Date": "2023-11-29T03:50:45.000Z",
     "Status": true,
     "Description": [
@@ -744,10 +773,11 @@
     "Featured": false
   },
   {
-    "Product_name": "GoPro HERO10 Black Action Camera",
+    "Product_name": "GoPro HERO10 Black ",
     "Product_image": "https://i.ibb.co/r3nVQh6/pov-shot-hipster-millennial-new-generation-user-futuristic-new-technologies-use-drone-remote-control.jpg",
     "Tags": ["action-camera", "gopro", "4k"],
-    "Owner_email": "owner5@example.com",
+    "Owner_email": "owner5@gmail.com",
+    "ownerName": "Ava" ,
     "Date": "2023-11-30T04:55:00.000Z",
     "Status": true,
     "Description": [
@@ -772,13 +802,14 @@
       "Ebay": "https://www.ebay.com/p/25049782979"
     },
     "Product_id": 1025,
-    "Featured": true
+    "Featured": false
   },
   {
-    "Product_name": "LG UltraGear 27GL850-B Gaming Monitor",
+    "Product_name": "LG UltraGear 27GL850-B ",
     "Product_image": "https://i.ibb.co/nsLKvn7/view-computer-monitor-display-23-2150757537.jpg",
     "Tags": ["monitor", "lg", "gaming"],
-    "Owner_email": "owner6@example.com",
+    "Owner_email": "owner6@gmail.com",
+    "ownerName": "Arif",
     "Date": "2023-12-01T05:00:15.000Z",
     "Status": false,
     "Description": [
@@ -809,7 +840,8 @@
     "Product_name": "Apple AirPods Pro",
     "Product_image": "https://i.ibb.co/nPcpgZs/black-wireless-earbud-with-charging-case-1268-14371.jpg",
     "Tags": ["earbuds", "apple", "noise-cancelling"],
-    "Owner_email": "owner6@example.com",
+    "Owner_email": "owner6@gmail.com",
+    "ownerName": "Arif",
     "Date": "2023-12-02T06:05:30.000Z",
     "Status": true,
     "Description": [
@@ -834,13 +866,14 @@
       "Ebay": "https://www.ebay.com/b/Apple-AirPods-Pro/80077/bn_7116427158"
     },
     "Product_id": 1027,
-    "Featured": true
+    "Featured": false
   },
   {
     "Product_name": "Logitech G Pro X Wireless ",
     "Product_image": "https://i.ibb.co/sgPMVKn/various-wireless-devices-yellow-table-140725-9018.jpg",
     "Tags": ["headset", "logitech", "gaming"],
-    "Owner_email": "owner6@example.com",
+    "Owner_email": "owner6@gmail.com",
+    "ownerName": "Arif",
     "Date": "2023-12-03T07:10:45.000Z",
     "Status": true,
     "Description": [
@@ -871,7 +904,8 @@
     "Product_name": "Samsung Galaxy Tab S7+",
     "Product_image": "https://i.ibb.co/CBLgzL1/tablet-skin-mock-up-isolated-1310-1149.jpg",
     "Tags": ["tablet", "samsung", "android"],
-    "Owner_email": "owner6@example.com",
+    "Owner_email": "owner6@gmail.com",
+    "ownerName": "Arif",
     "Date": "2023-12-04T08:15:00.000Z",
     "Status": true,
     "Description": [
@@ -896,13 +930,14 @@
       "Ebay": "https://www.ebay.com/b/Samsung-Galaxy-Tab-S7/171485/bn_7117534051"
     },
     "Product_id": 1029,
-    "Featured": true
+    "Featured": false
   },
   {
     "Product_name": "Sony WH-1000XM4 Wireless ",
     "Product_image": "https://i.ibb.co/pLpTSGj/high-angle-smartphone-desk-with-headphones-23-2149404198.jpg",
     "Tags": ["headphones", "sony", "noise-cancelling"],
-    "Owner_email": "owner6@example.com",
+    "Owner_email": "owner6@gmail.com",
+    "ownerName": "Arif",
     "Date": "2023-12-05T09:20:15.000Z",
     "Status": true,
     "Description": [
