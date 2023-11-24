@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import UseAuth from "../../Hooks/UseAuth";
+import { CgMenuGridO } from "react-icons/cg";
 
 const Navbar = () => {
   const {OUT ,user} = UseAuth()
@@ -47,50 +48,37 @@ const Navbar = () => {
               tabIndex={0}
               className="btn btn-ghost lg:hidden"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
+              <CgMenuGridO className="text-[#00ADB5] text-2xl"></CgMenuGridO>
             </label>
             <ul
               tabIndex={0}
               className={`menu ${
                 toggle ? "" : "hidden"
-              } menu-sm  lg:hidden absolute  z-[1] p-2 shadow border border-[#00ADB5] bg-[#393E46] rounded-box w-52`}
+              } menu-sm navDatat space-y-3  lg:hidden absolute  z-[1] px-2 py-3 shadow border border-[#00ADB5] bg-[#393E46] rounded-box w-52`}
             >
               {link}
             </ul>
           </div>
-          <a className=" text-xl font-bold">World</a>
+          <a className=" text-xl font-bold"><span className="text-[#EEEEEE]">Tech</span>Raddar</a>
         </div>
         <div className="navbar-end gap-10">
 
         <div className=" hidden lg:flex">
-          <ul className="menu menu-horizontal px-1"> <NavLink
-        className="text-lg   font-semibold text-[#00ADB5] hover:border-b-[3px] hover:border-[#EEEEEE] border-b-[6px] border-[#393E46]  ml-7 "
+          <ul className="menu menu-horizontal px-1 navbarLink"> <NavLink
+        className="text-lg   font-semibold text-[#00ADB5] hover:border-b-[3px] hover:border-[#EEEEEE] border-b-[3px] border-[#393E46]  ml-7 "
         to={"/"}
       >
         Home
       </NavLink>
       <NavLink
-        className="text-lg   font-semibold text-[#00ADB5] hover:border-b-[3px] hover:border-[#EEEEEE] border-b-[6px] border-[#393E46] ml-7 "
+        className="text-lg   font-semibold text-[#00ADB5] hover:border-b-[3px] hover:border-[#EEEEEE] border-b-[3px] border-[#393E46] ml-7 "
         to={"/products"}
       >
         Products
       </NavLink>
       {
         user? '': <NavLink
-        className="text-lg   font-semibold text-[#00ADB5] hover:border-b-[3px] hover:border-[#EEEEEE] border-b-[6px] border-[#393E46] ml-7 "
+        className="text-lg   font-semibold text-[#00ADB5] hover:border-b-[3px] hover:border-[#EEEEEE] border-b-[3px] border-[#393E46] ml-7 "
         to={"/login"}
       >
         Login

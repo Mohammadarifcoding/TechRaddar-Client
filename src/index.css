@@ -10,7 +10,13 @@
     font-family: 'Nunito', sans-serif;
 }
 
-/* a.active{
-    color: #EEEEEE;
+.navbarLink a.active{
+    border-bottom:3px solid #EEEEEE 
+}
+.dasboard a.active{
+    color: #00ADB5;
+}
+.navDatat a.active{
     background-color: #00ADB5;
-} */
+    color: #EEEEEE;
+}
