@@ -6,6 +6,7 @@ import Register from "../Pages/Register/Register";
 import PrivateRoute from "../Providers/PrivateRoute";
 import DashBoard from "../Pages/DashBoard/DashBoard";
 import MyProfile from "../Pages/DashBoard/User/MyProfile";
+import Products from "../Pages/Products/Products";
 
  const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ import MyProfile from "../Pages/DashBoard/User/MyProfile";
           path:'/register',
           element:<Register></Register>
         },
+        {
+          path:'/products',
+          element:<Products></Products>
+        }
       ]
     },
     {

@@ -72,7 +72,7 @@ const Card = ({ featured, data ,trend }) => {
     
   }
   return (
-    <div className="relative flex w-full max-w-[26rem] border-[#00ADB5] group border-[4px] mx-auto flex-col rounded-xl bg-white text-gray-700 shadow-lg overflow-hidden">
+    <div className="relative shadow-2xl flex w-full max-w-[26rem] border-[#00ADB5] group border-[4px] mx-auto flex-col rounded-xl bg-white text-gray-700  overflow-hidden">
       <div className="relative mx-4 mt-4 rounded-xl overflow-hidden bg-[#222831] shadow-lg">
       <div className="group-hover:scale-125 transition-transform ease-in-out duration-300">
       <img src={Product_image} alt="ui/ux review check" className="w-full h-auto shadow-xl transition-all duration-300 transform-gpu hover:scale-125" />

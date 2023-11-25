@@ -1,4 +1,4 @@
-[
+const tags = [
     "tablet",
     "apple",
     "high-performance",
@@ -65,3 +65,5 @@
     "wh-1000xm4",
     "noise-cancellation"
 ]
+
+export default tags

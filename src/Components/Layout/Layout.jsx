@@ -11,8 +11,10 @@ const Layout = () => {
             {
                  location.pathname == '/login' || location.pathname == '/register' ? '':<Navbar></Navbar>
             }
-            
+            <div className='min-h-[calc(100vh-258px)]'>
             <Outlet></Outlet>
+            </div>
+            
             {
                  location.pathname == '/login' || location.pathname == '/register' ? '':<Footer></Footer>
             }
