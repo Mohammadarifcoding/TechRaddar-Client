@@ -3,7 +3,7 @@ import { Typography } from '@material-tailwind/react';
 
 const Footer = () => {
     return (
-        <footer className="w-full bg-[#393E46] p-8">
+        <footer className="w-full bg-[#222831] p-8">
       <div className="flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12  text-center md:justify-between">
          
          <div >
