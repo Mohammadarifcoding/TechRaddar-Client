@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BiDownvote, BiUpvote } from "react-icons/bi";
 import { SlCalender } from "react-icons/sl";
 import moment from 'moment'
@@ -6,12 +6,64 @@ import UseAuth from './../../Hooks/UseAuth';
 import { useNavigate } from 'react-router-dom';
 import { FaHashtag } from "react-icons/fa";
 import { FaLink } from "react-icons/fa";
+import UseAxious from "../../Hooks/UseAxious";
+import { useQuery } from "@tanstack/react-query";
 const Card = ({ featured, data }) => {
   const {user} = UseAuth()
-  const { Product_name, Product_image, Description , Date ,Tags , External_Links  } = data;
+  const AxiousPublic = UseAxious()
+  const { Product_name, Product_image, Description,Product_id, Date ,Tags , External_Links  } = data;
   const nav = useNavigate()
+
+  const {data : UpvoteData = [] , refetch :handleVoteRefetch } = useQuery({
+    queryKey:[`UpvoteData${Product_id}`,user?.email],
+    queryFn: async()=>{
+      const res = await AxiousPublic.get(`/upvoteData/${Product_id}`)
+      return res.data
+    }
+  })
+  const {data : DownVoteData = [] , refetch :handleDownVoteDataRefetch } = useQuery({
+    queryKey:[`DownVoteData${Product_id}`,user?.email],
+    queryFn: async()=>{
+      const res = await AxiousPublic.get(`/downVoteData/${Product_id}`)
+      return res.data
+    }
+  })
+ 
+ useEffect(()=>{
+  AxiousPublic.put(`/updateUPVote/${Product_id}`,{vote:UpvoteData?.length})
+  .then(res => {console.log(res.data)})
+ },[UpvoteData,DownVoteData])
+ 
   const handleSend = ()=>{
    nav('/login')
+  }
+
+  
+  const handleVote = async()=>{
+    console.log('vote 1 done')
+     AxiousPublic.post(`/upVote/${Product_id}/${user?.email}`)
+    .then(res => {
+      console.log(res.data)
+      AxiousPublic.put(`/updateUPVote/${Product_id}`,{vote:UpvoteData?.length})
+      .then(res => {console.log(res.data)})
+      handleVoteRefetch()
+      handleDownVoteDataRefetch()
+     
+     
+    })
+}
+  
+  const handleDownVote = async()=>{
+    console.log('downvote 1 done')
+      AxiousPublic.post(`/downVote/${Product_id}/${user?.email}`)
+      .then(res => {
+        console.log(res.data)
+        AxiousPublic.put(`/updateUPVote/${Product_id}`,{vote:UpvoteData?.length})
+      .then(res => {console.log(res.data)})
+      handleVoteRefetch()
+      handleDownVoteDataRefetch()
+      })
+    
   }
   return (
     // <div className="relative flex w-full max-w-[26rem] mx-auto flex-col rounded-xl bg-white text-gray-700 shadow-lg overflow-hidden">
@@ -146,8 +198,8 @@ const Card = ({ featured, data }) => {
     </div>
     <div className="p-6 flex-grow">
       <div className="flex items-center justify-between mb-3">
-        <h5 className="block font-bold text-xl xl:text-2xl antialiased leading-snug tracking-normal text-[#EEEEEE]">
-          {Product_name}
+        <h5 className="cursor-pointer flex gap-3 hover:underline font-bold text-xl xl:text-2xl antialiased leading-snug tracking-normal text-[#EEEEEE]">
+          {Product_name}<FaLink className="group-hover:underline"></FaLink>
         </h5>
         <p className="flex items-center gap-1.5 font-sans text-base font-normal leading-relaxed text-blue-gray-900 antialiased">
           <svg
@@ -198,37 +250,35 @@ const Card = ({ featured, data }) => {
         </div>
       </div>
 
-      {user ? ( // Checking if a user exists
+      
         <div className="flex items-center gap-3 mt-2 group">
           {/* Upvote Button */}
           <div className="flex items-center gap-2">
             <span
+            onClick={user ? handleVote : handleSend}
               data-tooltip-target="upvote-tooltip"
-              className="cursor-pointer rounded-full border border-[#00ADB5]/5 bg-[#00ADB5]/5 p-3 text-[#00ADB5] transition-colors hover:border-[#00ADB5]/10 hover:bg-[#00ADB5]/10 hover:!opacity-100 group-hover:opacity-70"
+              className="cursor-pointer rounded-full  border border-[#00ADB5]/5 bg-[#00ADB5]/5 p-3 text-[#00ADB5] transition-colors hover:border-[#00ADB5]/10 hover:bg-[#00ADB5]/10 hover:!opacity-100 group-hover:opacity-70"
             >
-              <BiUpvote />
+              <BiUpvote className="" />
             </span>
-            <span className="text-[#00ADB5] text-lg font-bold">20</span>{" "}
+            <span className="text-[#00ADB5] text-lg font-bold">{UpvoteData?.length}</span>{" "}
             {/* Replace with actual upvote count */}
           </div>
           
           {/* Downvote Button */}
           <div className="flex items-center gap-2">
             <span
+            onClick={user ? handleDownVote : handleSend}
               data-tooltip-target="downvote-tooltip"
               className="cursor-pointer rounded-full border border-[#00ADB5]/5 bg-[#00ADB5]/5 p-3 text-red-500 transition-colors hover:border-[#00ADB5]/10 hover:bg-[#00ADB5]/10 hover:!opacity-100 group-hover:opacity-70"
             >
               <BiDownvote />
             </span>
-            <span className="text-[#8FB1AA] text-lg font-bold">5</span>{" "}
+            <span className="text-[#8FB1AA] text-lg font-bold">{DownVoteData?.length}</span>{" "}
             {/* Replace with actual downvote count */}
           </div>
         </div>
-      ) : (
-        <div className="flex items-center justify-center mt-8">
-          <button onClick={handleSend} className="btn bg-[#00ADB5] text-white hover:bg-white hover:text-[#00ADB5] border-2 border-[#00ADB5] hover:border-2 hover:border-[#00ADB5]">Login To Vote</button>
-        </div>
-      )}
+      
     </div>
     {
       featured ||<div className="px-6 pb-5 pt-0">
@@ -241,6 +291,6 @@ const Card = ({ featured, data }) => {
 
   </div>
   );
-};
+}
 
 export default Card;
