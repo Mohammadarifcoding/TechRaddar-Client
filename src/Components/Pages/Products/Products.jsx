@@ -19,13 +19,30 @@ const suggestions = tags.map((country) => {
 const Products = () => {
   const [tagsList, setTagsList] = useState([]);
   const [item,setItems] = useState([])
+  const [totalItem,setTotalItemnum] = useState(0)
+
+  useEffect(()=>{
+    AxiousPublic.get('/itemlength')
+    .then(res => setTotalItemnum(parseInt(res.data.result)))
+
+  },[])
+  const [DataLoading,setDataLoading] = useState(true)
+  const [currentPage,setCurrentPage] = useState(0)
+  const [pagenumber,setPagenumber] = useState(20)
+  const  totalPage = Math.ceil(totalItem / pagenumber)
+  const pages = [...Array(totalPage).keys()]
   const AxiousPublic = UseAxious();
+  
+  
+  
   useEffect(() => {
-     AxiousPublic.post(`/search`, { tagsList })
+     AxiousPublic.post(`/search`, { tagsList ,page : currentPage , size:pagenumber })
      .then(res => {
         setItems(res.data)
+        setDataLoading(false)
+        console.log(currentPage)
      })
-  }, [tagsList,AxiousPublic]);
+  }, [tagsList,AxiousPublic,totalPage,currentPage,pagenumber]);
   const handleDelete = (i) => {
     setTagsList(tagsList.filter((tag, index) => index !== i));
   };
@@ -48,13 +65,15 @@ const Products = () => {
     console.log("The tag at index " + index + " was clicked");
   };
 
-   
-  
+   const handlePageChange = (ind)=>{
+    setCurrentPage(ind)
+    window.scrollTo(0,0)
+   }
 
   return (
     <div>
 <div className="mx-auto max-w-screen-lg mb-20">
-      <h1 className="my-5 lg:text-4xl text-3xl font-bold text-[#222831] flex justify-center gap-3">
+      <h1 className="mb-10 mt-20 lg:text-4xl  text-3xl font-bold text-[#222831] flex justify-center gap-3">
         All Products <FaArrowRight />
       </h1>
       
@@ -93,12 +112,41 @@ const Products = () => {
       
       
     </div>
+    {
+      DataLoading &&  <div className="mt-[10vh] flex justify-center items-center">
+      <div id="wifi-loader">
+       <svg className="circle-outer" viewBox="0 0 86 86">
+         <circle className="back" cx={43} cy={43} r={40} />
+         <circle className="front" cx={43} cy={43} r={40} />
+         <circle className="new" cx={43} cy={43} r={40} />
+       </svg>
+       <svg className="circle-middle" viewBox="0 0 60 60">
+         <circle className="back" cx={30} cy={30} r={27} />
+         <circle className="front" cx={30} cy={30} r={27} />
+       </svg>
+       <svg className="circle-inner" viewBox="0 0 34 34">
+         <circle className="back" cx={17} cy={17} r={14} />
+         <circle className="front" cx={17} cy={17} r={14} />
+       </svg>
+       <div className="text" data-text="Searching" />
+     </div>
+           </div>
+    }
     <div className="grid max-w-[1300px] mb-10 mx-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3  gap-3">
       {
         item?.map(item => <Card key={item._id} data={item}></Card>)
       }
       </div>
       <ToastContainer />
+      <div className="flex justify-center items-center mb-10">
+        {
+         pages.map((item,ind) => <button onClick={()=>{handlePageChange(ind)}}  className={`btn ml-2 font-bold text-xl ${currentPage == ind ? 'bg-[#393E46] text-[#00ADB5] hover:bg-[#EEEEEE] border-2 border-[#00ADB5] hover:border-2 hover:border-[#00ADB5]':'bg-[#00ADB5] text-[#EEEEEE] hover:bg-[#EEEEEE] border-2 border-[#00ADB5] hover:border-2 hover:text-[#222831] hover:border-[#00ADB5] '} `}>{item+1}</button>)
+           
+        }
+      
+      </div>
+    
+      
     </div>
     
   );
