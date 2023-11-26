@@ -7,6 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import UseAxious from "../../Hooks/UseAxious";
 import { useQuery } from "@tanstack/react-query";
 import Card from "../../Shared/Card/Card";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+
 
 
 const suggestions = tags.map((country) => {
@@ -23,7 +25,9 @@ const Products = () => {
 
   useEffect(()=>{
     AxiousPublic.get('/itemlength')
-    .then(res => setTotalItemnum(parseInt(res.data.result)))
+    .then(res => {
+      setTotalItemnum(parseInt(res.data.result))
+    })
 
   },[])
   const [DataLoading,setDataLoading] = useState(true)
@@ -41,6 +45,8 @@ const Products = () => {
         setItems(res.data)
         setDataLoading(false)
         console.log(currentPage)
+        console.log(tagsList)
+        console.log(res.data)
      })
   }, [tagsList,AxiousPublic,totalPage,currentPage,pagenumber]);
   const handleDelete = (i) => {
@@ -69,7 +75,24 @@ const Products = () => {
     setCurrentPage(ind)
     window.scrollTo(0,0)
    }
+   const handleAdd = ()=>{
+    const valuue = currentPage + 1
+    if(valuue > totalPage){
+      return
+    }
+    setCurrentPage(valuue)
+    window.scrollTo(0,0)
+   }
 
+   const handleBack = ()=>{
+    const valuue = currentPage - 1
+    if(valuue < 0){
+      return
+    }
+    setCurrentPage(valuue)
+    window.scrollTo(0,0)
+   }
+ 
   return (
     <div>
 <div className="mx-auto max-w-screen-lg mb-20">
@@ -79,7 +102,7 @@ const Products = () => {
       
       <div className="flex justify-center items-center">
         <div className="w-full max-w-screen-lg p-4 flex items-center justify-between gap-2 lg:flex-row flex-col">
-          <div className="relative border-2 bg-[#EEEEEE] border-[#00ADB5] w-full rounded-lg flex items-center  text-lg py-2">
+          <div className="relative border-2 bg-[#EEEEEE] pl-3 border-[#00ADB5] w-full rounded-lg flex items-center  text-lg py-2">
             <ReactTags
               tags={tagsList}
               placeholder="Search by tags"
@@ -132,7 +155,7 @@ const Products = () => {
      </div>
            </div>
     }
-    <div className="grid max-w-[1300px] mb-10 mx-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3  gap-3">
+    <div className="grid sm:p-0 p-4 max-w-[1300px] mb-10 mx-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3  gap-3">
       {
         item?.map(item => <Card key={item._id} data={item}></Card>)
       }
@@ -140,8 +163,14 @@ const Products = () => {
       <ToastContainer />
       <div className="flex justify-center items-center mb-10">
         {
-         pages.map((item,ind) => <button onClick={()=>{handlePageChange(ind)}}  className={`btn ml-2 font-bold text-xl ${currentPage == ind ? 'bg-[#393E46] text-[#00ADB5] hover:bg-[#EEEEEE] border-2 border-[#00ADB5] hover:border-2 hover:border-[#00ADB5]':'bg-[#00ADB5] text-[#EEEEEE] hover:bg-[#EEEEEE] border-2 border-[#00ADB5] hover:border-2 hover:text-[#222831] hover:border-[#00ADB5] '} `}>{item+1}</button>)
-           
+          tagsList.length ? <></>:
+          <>
+            <button onClick={()=>{handleBack()}}  className={`btn ml-2 font-bold text-xl  `}><IoIosArrowBack /></button>
+         {pages.map((item,ind) => <button onClick={()=>{handlePageChange(ind)}}  className={`btn ml-2 font-bold text-xl ${currentPage == ind ? 'bg-[#393E46] text-[#00ADB5] hover:bg-[#EEEEEE] border-2 border-[#00ADB5] hover:border-2 hover:border-[#00ADB5]':'bg-[#00ADB5] text-[#EEEEEE] hover:bg-[#EEEEEE] border-2 border-[#00ADB5] hover:border-2 hover:text-[#222831] hover:border-[#00ADB5] '} `}>{item+1}</button>)}
+         <button onClick={()=>{handleAdd()}}  className={`btn ml-2 font-bold text-xl  `}><IoIosArrowForward /></button>
+          </>
+         
+            
         }
       
       </div>

@@ -6,7 +6,7 @@
     "Owner_email": "owner1@gmail.com",
     "ownerName": "Sophia",
     "Date": "2023-11-10T08:15:30.000Z",
-    "Status": false,
+    "Status": true,
     "Description": [
       [
         "Experience premium features on the flagship Samsung smartphone.",
@@ -39,7 +39,7 @@
     "Owner_email": "owner1@gmail.com",
     "ownerName": "Sophia",
     "Date": "2023-11-10T08:15:30.000Z",
-    "Status": false,
+    "Status": true,
     "Description": [
       [
         "Unleash productivity with the powerful Dell XPS 15.",
@@ -570,7 +570,7 @@
     "Owner_email": "owner4@gmail.com",
     "ownerName": "Noah",
     "Date": "2023-11-23T21:20:15.000Z",
-    "Status": false,
+    "Status": true,
     "Description": [
       [
         "Unleash gaming supremacy with the Alienware Area-51m R2.",
