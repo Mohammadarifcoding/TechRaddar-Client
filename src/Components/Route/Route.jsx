@@ -8,6 +8,7 @@ import DashBoard from "../Pages/DashBoard/DashBoard";
 import MyProfile from "../Pages/DashBoard/User/MyProfile";
 import Products from "../Pages/Products/Products";
 import Error from "../Pages/Error/Error";
+import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 
  const router = createBrowserRouter([
     {
@@ -30,6 +31,11 @@ import Error from "../Pages/Error/Error";
         {
           path:'/products',
           element:<Products></Products>
+        },
+        {
+          path:'/productDetails/:productId',
+          element:<ProductDetails></ProductDetails>,
+          loader:({params})=> fetch(`http://localhost:5000/products/${params.productId}`)
         }
       ]
     },

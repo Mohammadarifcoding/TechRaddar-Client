@@ -3,7 +3,7 @@ import { BiDownvote, BiUpvote } from "react-icons/bi";
 import { SlCalender } from "react-icons/sl";
 import moment from "moment";
 import UseAuth from "./../../Hooks/UseAuth";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaHashtag } from "react-icons/fa";
 import { FaLink } from "react-icons/fa";
 import UseAxious from "../../Hooks/UseAxious";
@@ -110,10 +110,12 @@ const Card = ({ featured, data, trend }) => {
       </div>
       <div className="p-6 flex flex-col flex-grow">
         <div className="flex items-center justify-between mb-3">
-          <h5 className="cursor-pointer flex gap-3 hover:underline font-bold text-xl xl:text-2xl antialiased leading-snug tracking-normal text-[#222831]">
-            {Product_name}
-            <FaLink className="group-hover:underline"></FaLink>
-          </h5>
+          <Link to={`/productDetails/${Product_id}`}>
+            <h5 className="cursor-pointer flex gap-3 hover:underline font-bold text-xl xl:text-2xl antialiased leading-snug tracking-normal text-[#222831]">
+              {Product_name}
+              <FaLink className="group-hover:underline"></FaLink>
+            </h5>
+          </Link>
           <p className="flex items-center gap-1.5 font-sans text-base font-normal leading-relaxed text-blue-gray-900 antialiased">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -178,52 +180,50 @@ const Card = ({ featured, data, trend }) => {
             </a>
           </div>
         </div>
-         <div className="">
-         {user ? ( // Checking if a user exists
-          <div className="flex items-center gap-3 mt-2 group">
-            {/* Upvote Button */}
-            <div className="flex items-center gap-2">
-              <span
-                onClick={user ? handleVote : handleSend}
-                data-tooltip-target="upvote-tooltip"
-                className="cursor-pointer rounded-full border border-[#00ADB5]/5 bg-[#00ADB5]/5 p-3 text-[#00ADB5] transition-colors hover:border-[#00ADB5]/10 hover:bg-[#00ADB5]/10 hover:!opacity-100 group-hover:opacity-70"
-              >
-                <BiUpvote />
-              </span>
-              <span className="text-[#00ADB5] text-lg font-bold">
-                {UpvoteData?.length}
-              </span>{" "}
-              {/* Replace with actual upvote count */}
-            </div>
+        <div className="">
+          {user ? ( // Checking if a user exists
+            <div className="flex items-center gap-3 mt-2 group">
+              {/* Upvote Button */}
+              <div className="flex items-center gap-2">
+                <span
+                  onClick={user ? handleVote : handleSend}
+                  data-tooltip-target="upvote-tooltip"
+                  className="cursor-pointer rounded-full border border-[#00ADB5]/5 bg-[#00ADB5]/5 p-3 text-[#00ADB5] transition-colors hover:border-[#00ADB5]/10 hover:bg-[#00ADB5]/10 hover:!opacity-100 group-hover:opacity-70"
+                >
+                  <BiUpvote />
+                </span>
+                <span className="text-[#00ADB5] text-lg font-bold">
+                  {UpvoteData?.length}
+                </span>{" "}
+                {/* Replace with actual upvote count */}
+              </div>
 
-            {/* Downvote Button */}
-            <div className="flex items-center gap-2">
-              <span
-                onClick={user ? handleDownVote : handleSend}
-                data-tooltip-target="downvote-tooltip"
-                className="cursor-pointer rounded-full border border-[#00ADB5]/5 bg-[#00ADB5]/5 p-3 text-red-500 transition-colors hover:border-[#00ADB5]/10 hover:bg-[#00ADB5]/10 hover:!opacity-100 group-hover:opacity-70"
-              >
-                <BiDownvote />
-              </span>
-              <span className="text-red-500 text-lg font-bold">
-                {DownVoteData?.length}
-              </span>{" "}
-              {/* Replace with actual downvote count */}
+              {/* Downvote Button */}
+              <div className="flex items-center gap-2">
+                <span
+                  onClick={user ? handleDownVote : handleSend}
+                  data-tooltip-target="downvote-tooltip"
+                  className="cursor-pointer rounded-full border border-[#00ADB5]/5 bg-[#00ADB5]/5 p-3 text-red-500 transition-colors hover:border-[#00ADB5]/10 hover:bg-[#00ADB5]/10 hover:!opacity-100 group-hover:opacity-70"
+                >
+                  <BiDownvote />
+                </span>
+                <span className="text-red-500 text-lg font-bold">
+                  {DownVoteData?.length}
+                </span>{" "}
+                {/* Replace with actual downvote count */}
+              </div>
             </div>
-          </div>
-        ) : (
-          <div className="flex items-center justify-center mt-8">
-            <button
-              onClick={handleSend}
-              className="btn bg-[#00ADB5] text-white hover:bg-white hover:text-[#00ADB5] border-2 border-[#00ADB5] hover:border-2 hover:border-[#00ADB5]"
-            >
-              Login To Vote
-            </button>
-          </div>
-        )}
-         </div>
-
-       
+          ) : (
+            <div className="flex items-center justify-center mt-8">
+              <button
+                onClick={handleSend}
+                className="btn bg-[#00ADB5] text-white hover:bg-white hover:text-[#00ADB5] border-2 border-[#00ADB5] hover:border-2 hover:border-[#00ADB5]"
+              >
+                Login To Vote
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
 
