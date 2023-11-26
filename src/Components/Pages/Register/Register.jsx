@@ -162,18 +162,18 @@ const Register = () => {
     <div className="min-h-screen w-full bg-[#00ADB5]  flex justify-center  items-center py-6">
       <div className="mx-auto  max-w-md  sm:min-w-[440px] min-w-[300px] bg-white shadow-2xl  p-8 rounded-lg py-4">
         <div className="flex  justify-center items-center ">
-          <img className="w-20" src="/images/AuthWelcome.png" alt="" />
+          <img className="w-16" src="/images/AuthWelcome.png" alt="" />
           <div>
-            <h2 className="text-3xl font-extrabold text-[#222831]">
+            <h2 className="text-2xl font-extrabold text-[#222831]">
               Create Account
             </h2>
           </div>
         </div>
-        <form onSubmit={handleRegister} className="form  mt-4">
+        <form onSubmit={handleRegister} className="form  ">
           <div {...getRootProps()} className="relative flex justify-center">
             <input name="img"  {...getInputProps()} />
             <div
-              className={`dropzone border-2 border-[#00ADB5] w-[100px]  h-[100px] rounded-full text-center mb-2 cursor-pointer`}
+              className={`dropzone border-2 border-[#00ADB5] w-[70px]  h-[70px] rounded-full text-center cursor-pointer`}
             >
               {previewImage ? (
                 <img
@@ -192,41 +192,41 @@ const Register = () => {
               )}
             </div>
           </div>
-          <label className="relative ">
-            
+          <label className="relative  ">
+          <p className='pb-[2px]  font-bold'>Name</p>
             <input
               required
               name="Name"
               placeholder="Enter your Name"
               type="text"
-              className="input w-full p-2 mb-2 focus:outline-none focus:border-[#00ADB5] border-2 border-gray-400 rounded-lg"
+              className="input w-full h-[45px]  mb-[10px] focus:outline-none focus:border-[#00ADB5] border-2 border-gray-400 rounded-lg"
             />
           </label>
           <label className="relative ">
-            
+          <p className='pb-[2px]  font-bold'>Email</p>
             <input
               required
               name="email"
               placeholder="Enter your Email"
               type="email"
-              className="input w-full p-2 mb-2 focus:outline-none focus:border-[#00ADB5] border-2 border-gray-400 rounded-lg"
+              className="input w-full h-[45px] mb-[10px] focus:outline-none focus:border-[#00ADB5] border-2 border-gray-400 rounded-lg"
             />
           </label>
 
           <label className="relative">
-            
+          <p className='pb-[2px] font-bold'>Password</p>
             <input
               required
               name="password"
               placeholder="Enter your Password"
               type="password"
-              className="input w-full p-2 mb-2 focus:outline-none focus:border-[#00ADB5] border-2 border-gray-400 rounded-lg"
+              className="input w-full h-[45px]  focus:outline-none focus:border-[#00ADB5] border-2 border-gray-400 rounded-lg"
             />
           </label>
 
           <button
             type="submit"
-            className="submit border border-[#00ADB5] hover:bg-white hover:text-[#00ADB5] bg-[#00ADB5] w-full mt-5 p-2 rounded-lg text-white text-lg transition duration-300 ease-in"
+            className="submit border border-[#00ADB5] h-[45px] hover:bg-white hover:text-[#00ADB5] bg-[#00ADB5] w-full mt-5 p-2 rounded-lg text-white text-lg transition duration-300 ease-in"
           >
             Register
           </button>

@@ -1,68 +1,95 @@
-import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
-import React from 'react';
-import { useState } from 'react';
-import Auth from '../Firebase/Firebase.config';
-import { useEffect } from 'react';
-import { useContext } from 'react';
-import { createContext } from 'react';
+import {
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
+import React from "react";
+import { useState } from "react";
+import Auth from "../Firebase/Firebase.config";
+import { useEffect } from "react";
+import { useContext } from "react";
+import { createContext } from "react";
+import UseAxious from "./../Hooks/UseAxious";
 
-export const AuthContext = createContext(null) 
+export const AuthContext = createContext(null);
 
-const AuthProvider = ({children}) => {
+const AuthProvider = ({ children }) => {
+  const AxiousPublic = UseAxious();
 
-    const [user,setUser] = useState(null)
-    const [loading, setLoading] = useState(true)
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-    const creatUser = (email,password)=>{
-        setLoading(true)
-        return createUserWithEmailAndPassword(Auth,email,password)
-     } 
-  
-     const OUT = ()=>{
-        setLoading(true)
-        return signOut(Auth)
-     }
-  
-     useEffect(()=>{
-        const unsubscribe = onAuthStateChanged(Auth,(currentUser)=>{
-          const email = currentUser?.email || user?.email;
-          const loggedUser = { email: email };
-            setUser(currentUser)
-            console.log(currentUser)
-            setLoading(false)
-            console.log('Ovserving',currentUser)
-            
-        })
-        return ()=>{
-            unsubscribe()
-        }
-     },[])
-  
-     const Google = ()=>{
-        const provider = new GoogleAuthProvider()
-        setLoading(true)
-        return signInWithPopup(Auth,provider)
-     }
-  
-     const update = (name,photo)=>{
-        setLoading(true)
-       return updateProfile(Auth.currentUser,{
-        displayName:name,photoURL:photo
-        })
-    }
-  
-    const In = (email,password)=>{
-        setLoading(true)
-        return signInWithEmailAndPassword(Auth,email,password)
-    }
-  
-    const AuthInfo = {  loading ,user, In, update , Google , OUT ,  creatUser }
+  const creatUser = (email, password) => {
+    setLoading(true);
+    return createUserWithEmailAndPassword(Auth, email, password);
+  };
 
-    return (
-        <AuthContext.Provider value={AuthInfo}>
-             {children}
-        </AuthContext.Provider>
-    );
+  const OUT = () => {
+    setLoading(true);
+    return signOut(Auth);
+  };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(Auth, (currentUser) => {
+      const email = currentUser?.email || user?.email;
+      const loggedUser = { email: email };
+      setUser(currentUser);
+      console.log(currentUser);
+      if (currentUser) {
+        AxiousPublic.post("/users",  loggedUser ).then((res) => {
+          console.log(res.data);
+          AxiousPublic.post("/jwt",  loggedUser ).then((res) => {
+            console.log(res.data);
+            if (res.data.token) {
+              localStorage.setItem("token", res.data.token);
+              console.log('Added the token')
+            }
+
+            setLoading(false);
+          });
+        });
+      }
+      else{
+        localStorage.removeItem("token")
+        console.log('deleted the token')
+        setLoading(false)
+      }
+
+      console.log("Ovserving", currentUser);
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, [AxiousPublic, user?.email]);
+
+  const Google = () => {
+    const provider = new GoogleAuthProvider();
+    setLoading(true);
+    return signInWithPopup(Auth, provider);
+  };
+
+  const update = (name, photo) => {
+    setLoading(true);
+    return updateProfile(Auth.currentUser, {
+      displayName: name,
+      photoURL: photo,
+    });
+  };
+
+  const In = (email, password) => {
+    setLoading(true);
+    return signInWithEmailAndPassword(Auth, email, password);
+  };
+
+  const AuthInfo = { loading, user, In, update, Google, OUT, creatUser };
+
+  return (
+    <AuthContext.Provider value={AuthInfo}>{children}</AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;

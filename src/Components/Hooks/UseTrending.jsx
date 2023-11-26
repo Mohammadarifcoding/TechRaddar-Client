@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import UseAxious from './UseAxious';
 
+
 const UseTrending = () => {
     const AxiousPublic = UseAxious()
     const getTrending = async()=>{
