@@ -1,12 +1,14 @@
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import UseAuth from '../../Hooks/UseAuth';
 import Swal from 'sweetalert2';
 
 const Login = () => {
     const {Google,In} = UseAuth()
     const nav = useNavigate()
+    const location = useLocation()
     const from = location?.state?.from?.pathname || '/'
+    
     const handleSignIN = (e)=>{
       const email = e.target.email.value
       const password = e.target.password.value

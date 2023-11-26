@@ -3,7 +3,7 @@ import NormalButton from '../../../Shared/Button/NormalButton';
 
 const Banner = () => {
     return (
-        <div className='max-h-[700px] min-h-[calc(100vh-73px)]    bg-cover bg-center w-full h-full bg-[url("/images/black-bg.jpg")]'>
+        <div className='max-h-[700px] py-10    bg-cover bg-center w-full h-full bg-[url("/images/superbg.jpg")]'>
            
            <div className='mx-auto max-w-[1300px] 2xl:px-0 xl:px-10 lg:px-10 md:px-10 px-10 py-5 flex lg:flex-row-reverse justify-between  flex-col-reverse items-center'>
            <img src="/public/images/22633729_6650960-removebg-preview.png" className='lg:max-w-[550px] ' alt="" />
