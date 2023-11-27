@@ -37,7 +37,7 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(Auth, (currentUser) => {
       const email = currentUser?.email || user?.email;
       const loggedUser = { email: email };
-      setUser(currentUser);
+     
       console.log(currentUser);
       if (currentUser) {
         AxiousPublic.post("/users",  loggedUser ).then((res) => {
@@ -48,7 +48,7 @@ const AuthProvider = ({ children }) => {
               localStorage.setItem("token", res.data.token);
               console.log('Added the token')
             }
-
+            setUser(currentUser);
             setLoading(false);
           });
         });
@@ -56,6 +56,7 @@ const AuthProvider = ({ children }) => {
       else{
         localStorage.removeItem("token")
         console.log('deleted the token')
+        setUser(currentUser);
         setLoading(false)
       }
 

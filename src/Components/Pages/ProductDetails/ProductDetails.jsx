@@ -3,18 +3,31 @@ import React, { useEffect } from "react";
 import { BiDownvote, BiLink, BiUpvote } from "react-icons/bi";
 import { FaCalendar, FaLink, FaTags } from "react-icons/fa";
 import { FaHashtag } from "react-icons/fa6";
-import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate, useParams } from "react-router-dom";
 import UseAxious from "../../Hooks/UseAxious";
 import { useQuery } from "@tanstack/react-query";
 import UseAuth from "../../Hooks/UseAuth";
 import { IoWarning } from "react-icons/io5";
 import  Swal  from 'sweetalert2';
+import ReviewGive from "./ReviewGive/ReviewGive";
+import ReviewGetting from "./ReviewGetting/ReviewGetting";
 
 
 const ProductDetails = () => {
   const data = useLoaderData();
+  const {productId} = useParams()
   const { user } = UseAuth();
   const AxiousPublic = UseAxious();
+  const theProducDetails = async()=>{
+    const res = await AxiousPublic.get(`/products/${productId}`)
+    return res.data
+  }
+
+  const {data:productData = {} , isLoading} = useQuery({
+    queryKey:[`product${productId}`],
+    queryFn:theProducDetails
+  })
+
   const {
     Product_name,
     Product_image,
@@ -28,7 +41,7 @@ const ProductDetails = () => {
     External_Links,
     Product_id,
     Featured,
-  } = data;
+  } = productData;
 
   const nav = useNavigate();
   const lo = useLocation();
@@ -103,18 +116,27 @@ const ProductDetails = () => {
         confirmButtonText: "Yes, report it!"
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire({
-            title: "Reported!",
-            text: "The moderator will review your report.",
-            icon: "success"
-          });
+            AxiousPublic.post('/reported',data)
+            .then(res => {
+                Swal.fire({
+                    title: "Reported!",
+                    text: "The moderator will review your report.",
+                    icon: "success"
+                  });
+            })
+         
         }
       });
   }
 
+
+  if(isLoading){
+    return <p>log</p>
+  }
   return (
     <>
-      <div className="my-10 max-w-[1300px] mx-auto">
+    <div className="bg-[#EEEEEE] py-10">
+    <div className=" max-w-[1300px] mx-auto">
         <div className="flex xl:flex-row  flex-col md:p-0 gap-4 xl:justify-between justify-center xl:items-start items-center p-4">
           <div className="max-w-[630px]  overflow-hidden rounded-xl group-hover:scale-125 transition-transform ease-in-out duration-300  flex justify-center ">
             <img
@@ -215,7 +237,11 @@ const ProductDetails = () => {
         
           </div>
         </div>
+        <ReviewGive productId={Product_id}></ReviewGive>
+       
       </div>
+    </div>
+      
     </>
   );
 };

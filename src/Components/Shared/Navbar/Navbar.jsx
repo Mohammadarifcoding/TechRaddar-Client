@@ -98,7 +98,7 @@ const Navbar = () => {
               <div className="w-10 rounded-full border-2 border-[#00ADB5]">
                 <img
                   alt="Tailwind CSS Navbar component"
-                  src={user?.photoURL}
+                  src={user?.photoURL || '/images/user.png'}
                   className=" rounded-full"
                 />
               </div>

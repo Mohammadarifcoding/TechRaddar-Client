@@ -10,6 +10,7 @@ import Products from "../Pages/Products/Products";
 import Error from "../Pages/Error/Error";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 
+
  const router = createBrowserRouter([
     {
       path: "/",
@@ -34,8 +35,8 @@ import ProductDetails from "../Pages/ProductDetails/ProductDetails";
         },
         {
           path:'/productDetails/:productId',
-          element:<ProductDetails></ProductDetails>,
-          loader:({params})=> fetch(`http://localhost:5000/products/${params.productId}`)
+          element:<PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>,
+         
         }
       ]
     },
