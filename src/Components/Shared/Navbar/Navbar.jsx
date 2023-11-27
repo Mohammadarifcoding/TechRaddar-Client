@@ -113,7 +113,7 @@ const Navbar = () => {
                 {user?.displayName}
               </Link>
               <Link
-                to={"/dashboard"}
+                to={"/dashboard/myprofile"}
                 className=" py-2 text-[#00ADB5] hover:bg-[#00ADB5] px-3  font-semibold rounded-xl  hover:text-[#EEEEEE] "
               >
                 Dashboard

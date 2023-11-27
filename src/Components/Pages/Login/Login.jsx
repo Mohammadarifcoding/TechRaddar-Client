@@ -10,6 +10,7 @@ const Login = () => {
     const from = location?.state?.from?.pathname || '/'
     
     const handleSignIN = (e)=>{
+      e.preventDefault()
       const email = e.target.email.value
       const password = e.target.password.value
       In(email, password)

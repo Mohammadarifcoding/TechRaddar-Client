@@ -35,8 +35,7 @@ import ProductDetails from "../Pages/ProductDetails/ProductDetails";
         },
         {
           path:'/productDetails/:productId',
-          element:<PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>,
-         
+          element:<ProductDetails></ProductDetails>,       
         }
       ]
     },

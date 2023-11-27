@@ -36,8 +36,9 @@ const DashBoard = () => {
   return (
  <>
 {/* Big screen dashboard */}
-    <div className="xl:flex p-3 hidden  bg-[#222831] min-h-screen">
-      <div className="lg:w-[300px] xl:w-[300px] 2xl:w-[350px] min-h-[95vh] px-3 py-3  rounded-xl bg-[#EEEEEE] ">
+<div className="max-w-[1800px] mx-auto">
+<div className="xl:flex p-3 gap-10 hidden  bg-[#222831]  min-h-screen">
+      <div className="w-[25%] rounded-xl bg-[#EEEEEE] ">
         <div className="w-full h-full  rounded-xl">
           <div className="flex justify-center pt-5 pb-3 gap-3">
             <img
@@ -57,7 +58,7 @@ const DashBoard = () => {
           </div>
         </div>
       </div>
-      <div>
+      <div className="w-[75%] rounded-xl bg-[#393E46]">
         <Outlet></Outlet>
       </div>
     </div>
@@ -99,6 +100,8 @@ const DashBoard = () => {
     </ul>
   </div>
 </div>
+</div>
+   
  </>
     
 

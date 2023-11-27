@@ -1,5 +1,5 @@
 import moment from "moment";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BiDownvote, BiLink, BiUpvote } from "react-icons/bi";
 import { FaCalendar, FaLink, FaTags } from "react-icons/fa";
 import { FaHashtag } from "react-icons/fa6";
@@ -16,13 +16,18 @@ import ReviewGetting from "./ReviewGetting/ReviewGetting";
 const ProductDetails = () => {
   const data = useLoaderData();
   const {productId} = useParams()
+  const [access,setAcess] = useState(false)
   const { user } = UseAuth();
   const AxiousPublic = UseAxious();
   const theProducDetails = async()=>{
     const res = await AxiousPublic.get(`/products/${productId}`)
     return res.data
   }
+useEffect(()=>{
 
+  window.scrollTo(0,0)
+
+},[])
   const {data:productData = {} , isLoading} = useQuery({
     queryKey:[`product${productId}`],
     queryFn:theProducDetails
@@ -45,7 +50,11 @@ const ProductDetails = () => {
 
   const nav = useNavigate();
   const lo = useLocation();
-
+  useEffect(()=>{
+    const aces = user?.email == Owner_email
+    setAcess(aces)
+    console.log(aces)
+  },[user?.email,Owner_email])
   const { data: UpvoteData = [], refetch: handleVoteRefetch } = useQuery({
     queryKey: [`UpvoteData${Product_id}`, user?.email],
     queryFn: async () => {
@@ -68,7 +77,7 @@ const ProductDetails = () => {
     }).then((res) => {
       console.log(res.data);
     });
-  }, [UpvoteData, DownVoteData]);
+  }, [UpvoteData, DownVoteData,Product_id,AxiousPublic]);
 
   const handleSend = () => {
     nav("/login", { state: { from: lo } });
@@ -133,6 +142,7 @@ const ProductDetails = () => {
   if(isLoading){
     return <p>log</p>
   }
+
   return (
     <>
     <div className="bg-[#EEEEEE] py-10">
@@ -186,16 +196,17 @@ const ProductDetails = () => {
               </h2>
             </div>
             <div className=" flex items-center mt-4">
-          {user ? ( // Checking if a user exists
+         
             <div className="flex items-center gap-6 mt-2 group">
               {/* Upvote Button */}
-              <div className="flex items-center gap-3 ">
+              <div className="flex items-center gap-2">
                 <span
+                
                   onClick={user ? handleVote : handleSend}
                   data-tooltip-target="upvote-tooltip"
-                  className="cursor-pointer rounded-full border border-[#00ADB5]/5 bg-[#00ADB5]/5 p-3 text-[#00ADB5] transition-colors hover:border-[#00ADB5]/10 hover:bg-[#00ADB5]/10 hover:!opacity-100 group-hover:opacity-70"
+                  className={`border  p-3 rounded-full  border-[#00ADB5]/5 ${access ? 'bg-gray-300' : 'cursor-pointer  bg-[#00ADB5]/5   text-[#00ADB5] transition-colors hover:border-[#00ADB5]/10 hover:bg-[#00ADB5]/10 hover:!opacity-100 group-hover:opacity-70'}`}
                 >
-                  <BiUpvote />
+                  <BiUpvote  />
                 </span>
                 <span className="text-[#00ADB5] text-lg font-bold">
                   {UpvoteData?.length} Vote
@@ -204,11 +215,11 @@ const ProductDetails = () => {
               </div>
 
               {/* Downvote Button */}
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
                 <span
                   onClick={user ? handleDownVote : handleSend}
                   data-tooltip-target="downvote-tooltip"
-                  className="cursor-pointer rounded-full border border-[#00ADB5]/5 bg-[#00ADB5]/5 p-3 text-red-500 transition-colors hover:border-[#00ADB5]/10 hover:bg-[#00ADB5]/10 hover:!opacity-100 group-hover:opacity-70"
+                  className={` rounded-full border border-[#00ADB5]/5   p-3 ${access ? ' bg-gray-300 ' :  'text-red-500 cursor-pointer transition-colors bg-[#00ADB5]/5 hover:border-[#00ADB5]/10 hover:bg-[#00ADB5]/10 hover:!opacity-100 group-hover:opacity-70'} `}
                 >
                   <BiDownvote />
                 </span>
@@ -218,16 +229,7 @@ const ProductDetails = () => {
                 {/* Replace with actual downvote count */}
               </div>
             </div>
-          ) : (
-            <div className="flex items-center justify-center mt-8">
-              <button
-                onClick={handleSend}
-                className="btn bg-[#00ADB5] text-white hover:bg-white hover:text-[#00ADB5] border-2 border-[#00ADB5] hover:border-2 hover:border-[#00ADB5]"
-              >
-                Login To Vote
-              </button>
-            </div>
-          )}
+          
           <button onClick={handleReport} className="flex items-center ml-8 btn border border-[#00ADB5]/5 bg-[#00ADB5]/5 p-3 text-red-500 transition-colors hover:border-[#00ADB5]/10 hover:bg-[#00ADB5]/10 hover:!opacity-100 group-hover:opacity-70">
             <span data-tooltip-target="downvote-tooltip"
                   className="cursor-pointer  rounded-full "> <IoWarning /></span>

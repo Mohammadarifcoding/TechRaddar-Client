@@ -173,14 +173,18 @@ const Register = () => {
           <div {...getRootProps()} className="relative flex justify-center">
             <input name="img"  {...getInputProps()} />
             <div
-              className={`dropzone border-2 border-[#00ADB5] w-[70px]  h-[70px] rounded-full text-center cursor-pointer`}
+              className={`dropzone border-2 relative border-[#00ADB5] w-[70px]  h-[70px] rounded-full text-center cursor-pointer`}
             >
               {previewImage ? (
-                <img
+                <>
+                 <img
                   src={previewImage}
                   alt="Uploaded Image"
                   className=" mx-auto  rounded-full h-full"
                 />
+                <img src="/images/imgUpload.png" className="absolute w-[20px] right-0 bottom-0 bg-white rounded-xl" alt="" />
+                </>
+               
               ) : (
                 <div className="mx-auto rounded-full bg-[#EEEEEE] h-full">
                   <img

@@ -97,54 +97,7 @@ const ReviewGive = ({productId}) => {
       </div>
       <ReviewGetting refetch={refetch} iddata={productId}> </ReviewGetting>
     </>
-    //      <div className="mb-2 mt-40 shadow-lg rounded-t-8xl rounded-b-5xl overflow-hidden">
-    //   <div className="pt-3 pb-3 md:pb-1 px-4 md:px-16 bg-white bg-opacity-40">
-    //     <div className="flex flex-wrap items-center">
-    //       <img className="mr-6 w-[50px] rounded-full" src={user?.photoURL} alt />
-    //       <h4 className="w-full md:w-auto text-xl font-heading font-medium">Ainsley Stones</h4>
-    //       <div className="w-full md:w-px h-2 md:h-8 mx-8 bg-transparent md:bg-gray-200" />
-    //       <span className="mr-4 text-xl font-heading font-medium">4.3</span>
-    //       <div className="flex">
-    //         {/* <a className="inline-block mr-1" href="#">
-    //           <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-    //             <path d="M20 7.91677H12.4167L10 0.416763L7.58333 7.91677H0L6.18335 12.3168L3.81668 19.5834L10 15.0834L16.1834 19.5834L13.8167 12.3168L20 7.91677Z" fill="#FFCB00" />
-    //           </svg>
-    //         </a>
-    //         <a className="inline-block mr-1" href="#">
-    //           <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-    //             <path d="M20 7.91677H12.4167L10 0.416763L7.58333 7.91677H0L6.18335 12.3168L3.81668 19.5834L10 15.0834L16.1834 19.5834L13.8167 12.3168L20 7.91677Z" fill="#FFCB00" />
-    //           </svg>
-    //         </a>
-    //         <a className="inline-block mr-1" href="#">
-    //           <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-    //             <path d="M20 7.91677H12.4167L10 0.416763L7.58333 7.91677H0L6.18335 12.3168L3.81668 19.5834L10 15.0834L16.1834 19.5834L13.8167 12.3168L20 7.91677Z" fill="#FFCB00" />
-    //           </svg>
-    //         </a>
-    //         <a className="inline-block mr-1" href="#">
-    //           <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-    //             <path d="M20 7.91677H12.4167L10 0.416763L7.58333 7.91677H0L6.18335 12.3168L3.81668 19.5834L10 15.0834L16.1834 19.5834L13.8167 12.3168L20 7.91677Z" fill="#FFCB00" />
-    //           </svg>
-    //         </a>
-    //         <a className="inline-block text-gray-200" href="#">
-    //           <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-    //             <path d="M20 7.91677H12.4167L10 0.416763L7.58333 7.91677H0L6.18335 12.3168L3.81668 19.5834L10 15.0834L16.1834 19.5834L13.8167 12.3168L20 7.91677Z" fill="currentColor" />
-    //           </svg>
-    //         </a> */}
-    //         <Rating  value={4}  readonly></Rating>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <div className="px-4 md:px-16 pt-8 pb-12 bg-white">
-    //     <div className="flex flex-wrap">
-    //       <div className="w-full md:w-2/3 mb-6 md:mb-0">
-    //         <p className="mb-8 max-w-2xl text-darkBlueGray-400 leading-loose">I haretra neque non mi aliquam, finibus hart bibendum molestie. Morbi facilisis neque in condimentum malesuada. Vestibulum suscipit sagittis dignissim mauris.</p>
-    //       </div>
-    //       <div className="w-full md:w-1/3 text-right">
-    //         <p className="mb-8 text-sm text-gray-300">Added 2 months ago</p>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
+  
   );
 };
 

@@ -136,7 +136,7 @@ const Products = () => {
       
     </div>
     {
-      DataLoading &&  <div className="mt-[10vh] flex justify-center items-center">
+      DataLoading &&  <div className="mt-[10vh] mb-[10vh] flex justify-center items-center">
       <div id="wifi-loader">
        <svg className="circle-outer" viewBox="0 0 86 86">
          <circle className="back" cx={43} cy={43} r={40} />

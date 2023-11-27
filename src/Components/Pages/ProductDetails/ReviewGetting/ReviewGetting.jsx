@@ -4,11 +4,12 @@ import UseAuth from '../../../Hooks/UseAuth';
 import { FaStar } from 'react-icons/fa';
 import { FaPen } from "react-icons/fa";
 import UseAxiousSecure from './../../../Hooks/UseAxiousSecure';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 const ReviewGetting = ({iddata,refetch}) => {
     const {user} = UseAuth()
     const [userRating, setUserRating] = useState(0);
     const AxiouSecure = UseAxiousSecure()
+    const lo = useLocation()
     const nav = useNavigate()
     const handleRatingChange = (rating) => {
         setUserRating(rating);
@@ -16,9 +17,14 @@ const ReviewGetting = ({iddata,refetch}) => {
     
 const handlePost = (e)=>{
     e.preventDefault()
+    if(!user){
+        nav("/login", { state: { from: lo } })
+        return
+    }
+   
      console.log('ff')
-     const image = user.photoURL
-     const email = user.email
+     const image = user?.photoURL
+     const email = user?.email
      const name = e.target.name.value
      const description = e.target.descripton.value
      const productId = iddata
@@ -41,12 +47,12 @@ const handlePost = (e)=>{
            
            <form onSubmit={handlePost} className='mt-10'>
             <div className='w-[70px] rounded-md'>
-                <img className='rounded-full' src={user.photoURL} alt="" />
+                <img className='rounded-full' src={user?.photoURL || '/images/user.png'} alt="" />
             </div>
 
             <div className='mt-7 flex flex-col'>
                 <label className='text-xl font-semibold'>Your Name</label>
-                <input name='name' value={user?.displayName} type="text" className='max-w-[400px] border-[3px] text-lg mt-2 input  border-[#00ADB5]' />
+                <input name='name' value={user?.displayName || 'UnKnown User'} type="text" className='max-w-[400px] border-[3px] text-lg mt-2 input  border-[#00ADB5]' />
             </div>
             <div className='mt-4 flex flex-col'>
             <label className='text-xl font-semibold'>Your Feeback</label>

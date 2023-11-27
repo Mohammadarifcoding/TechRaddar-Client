@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BiDownvote, BiUpvote } from "react-icons/bi";
 import { SlCalender } from "react-icons/sl";
 import moment from "moment";
@@ -14,6 +14,7 @@ import { FaArrowTrendUp } from "react-icons/fa6";
 const Card = ({ featured, data, trend }) => {
   const { user } = UseAuth();
   const [treding, refetchData] = UseTrending();
+  const [access,setAcess] = useState(false)
   const AxiousPublic = UseAxious();
   const {
     Product_name,
@@ -22,11 +23,16 @@ const Card = ({ featured, data, trend }) => {
     Product_id,
     Date,
     Tags,
-    External_Links,
+    External_Links,    
+    Owner_email
   } = data;
   const nav = useNavigate();
   const lo = useLocation();
-
+  useEffect(()=>{
+    const aces = user?.email == Owner_email
+    setAcess(aces)
+    console.log(aces)
+  },[user?.email,Owner_email])
   const { data: UpvoteData = [], refetch: handleVoteRefetch } = useQuery({
     queryKey: [`UpvoteData${Product_id}`, user?.email],
     queryFn: async () => {
@@ -57,6 +63,9 @@ const Card = ({ featured, data, trend }) => {
   };
 
   const handleVote = async () => {
+    if(access){
+      return
+    }
     console.log("vote 1 done");
     AxiousPublic.post(`/upVote/${Product_id}/${user?.email}`).then((res) => {
       console.log(res.data);
@@ -72,6 +81,9 @@ const Card = ({ featured, data, trend }) => {
   };
 
   const handleDownVote = async () => {
+    if(access){
+      return
+    }
     console.log("downvote 1 done");
     AxiousPublic.post(`/downVote/${Product_id}/${user?.email}`).then((res) => {
       console.log(res.data);
@@ -85,6 +97,7 @@ const Card = ({ featured, data, trend }) => {
       handleDownVoteDataRefetch();
     });
   };
+  console.log(access)
   return (
     <div className="relative shadow-2xl flex w-full max-w-[26rem] border-[#00ADB5] group border-[4px] mx-auto flex-col rounded-xl bg-white text-gray-700  overflow-hidden">
       <div className="relative mx-4 mt-4 rounded-xl overflow-hidden bg-[#222831] shadow-lg">
@@ -181,19 +194,20 @@ const Card = ({ featured, data, trend }) => {
           </div>
         </div>
         <div className="">
-          {user ? ( // Checking if a user exists
+           
             <div className="flex items-center gap-3 mt-2 group">
               {/* Upvote Button */}
               <div className="flex items-center gap-2">
                 <span
+                
                   onClick={user ? handleVote : handleSend}
                   data-tooltip-target="upvote-tooltip"
-                  className="cursor-pointer rounded-full border border-[#00ADB5]/5 bg-[#00ADB5]/5 p-3 text-[#00ADB5] transition-colors hover:border-[#00ADB5]/10 hover:bg-[#00ADB5]/10 hover:!opacity-100 group-hover:opacity-70"
+                  className={`border  p-3 rounded-full  border-[#00ADB5]/5 ${access ? 'bg-gray-300' : 'cursor-pointer  bg-[#00ADB5]/5   text-[#00ADB5] transition-colors hover:border-[#00ADB5]/10 hover:bg-[#00ADB5]/10 hover:!opacity-100 group-hover:opacity-70'}`}
                 >
-                  <BiUpvote />
+                  <BiUpvote  />
                 </span>
                 <span className="text-[#00ADB5] text-lg font-bold">
-                  {UpvoteData?.length}
+                  {UpvoteData?.length} Vote
                 </span>{" "}
                 {/* Replace with actual upvote count */}
               </div>
@@ -203,26 +217,17 @@ const Card = ({ featured, data, trend }) => {
                 <span
                   onClick={user ? handleDownVote : handleSend}
                   data-tooltip-target="downvote-tooltip"
-                  className="cursor-pointer rounded-full border border-[#00ADB5]/5 bg-[#00ADB5]/5 p-3 text-red-500 transition-colors hover:border-[#00ADB5]/10 hover:bg-[#00ADB5]/10 hover:!opacity-100 group-hover:opacity-70"
+                  className={` rounded-full border border-[#00ADB5]/5   p-3 ${access ? ' bg-gray-300 ' :  'text-red-500 cursor-pointer transition-colors bg-[#00ADB5]/5 hover:border-[#00ADB5]/10 hover:bg-[#00ADB5]/10 hover:!opacity-100 group-hover:opacity-70'} `}
                 >
                   <BiDownvote />
                 </span>
                 <span className="text-red-500 text-lg font-bold">
-                  {DownVoteData?.length}
+                  {DownVoteData?.length} DownVote
                 </span>{" "}
                 {/* Replace with actual downvote count */}
               </div>
             </div>
-          ) : (
-            <div className="flex items-center justify-center mt-8">
-              <button
-                onClick={handleSend}
-                className="btn bg-[#00ADB5] text-white hover:bg-white hover:text-[#00ADB5] border-2 border-[#00ADB5] hover:border-2 hover:border-[#00ADB5]"
-              >
-                Login To Vote
-              </button>
-            </div>
-          )}
+          
         </div>
       </div>
     </div>
