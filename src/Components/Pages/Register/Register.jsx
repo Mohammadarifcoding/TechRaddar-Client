@@ -5,11 +5,13 @@ import { useDropzone } from "react-dropzone";
 import Swal from "sweetalert2";
 import UseAuth from "../../Hooks/UseAuth";
 import axios from "axios";
+import UseAxious from "../../Hooks/UseAxious";
 
 const Register = () => {
   const { creatUser, update , Google } = UseAuth();
   const navigate = useNavigate();
   const  [regLoading,setRegLoading] = useState(false)
+  const AxiousPublic = UseAxious()
   const [fullImage, setFullImage] = useState([]);
   const [storedImage, setStoredImage] = useState(
     localStorage.getItem("userImage")
@@ -82,6 +84,11 @@ const Register = () => {
       .then((res) => {
         console.log(res.user);
         update(Name, img).then().catch()
+        const loggedUser = { email: email , name : Name  };
+        AxiousPublic.post("/users",  loggedUser )
+         .then((res) => {
+           console.log(res.data)
+         })
         setRegLoading(false)
 
         Swal.fire({
@@ -116,6 +123,11 @@ const Register = () => {
  const handelGoogle = ()=>{
        Google()
        .then(res => {
+        const loggedUser = { email: res.user.email , name : res.user.displayName };
+        AxiousPublic.post("/users",  loggedUser )
+         .then((res) => {
+           console.log(res.data)
+         })
         setRegLoading(true)
         Swal.fire({
           title: "Your account have been created.",
@@ -135,6 +147,11 @@ const Register = () => {
        })
        .catch(res => {
         setRegLoading(false)
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong",
+        });
        })
  }
  if(regLoading){

@@ -69,7 +69,7 @@ import ManageCoupon from "../Pages/DashBoard/Admin/ManageCoupon/ManageCoupon";
         {
           path:'updateProduct/:productId',
           element:<UpdateProduct></UpdateProduct>,
-          loader:({params})=>fetch(`http://localhost:5000/updateProductGet/${params.productId}`)
+          loader:({params})=>fetch(`https://techraddarserver.vercel.app/updateProductGet/${params.productId}`)
         },
         {
           path:'manageUser',

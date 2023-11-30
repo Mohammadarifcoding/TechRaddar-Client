@@ -1,4 +1,4 @@
-const tags = [
+[
     "tablet",
     "apple",
     "high-performance",
@@ -66,4 +66,3 @@ const tags = [
     "noise-cancellation"
 ]
 
-export default tags

@@ -36,12 +36,13 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(Auth, (currentUser) => {
       const email = currentUser?.email || user?.email;
-      const loggedUser = { email: email , name : currentUser?.displayName  };
+      
      
       console.log(currentUser);
       if (currentUser) {
-        AxiousPublic.post("/users",  loggedUser ).then((res) => {
-          console.log(res.data);
+        const loggedUser = { email: email , name : currentUser?.displayName  };
+       
+         
           AxiousPublic.post("/jwt",  loggedUser ).then((res) => {
             console.log(res.data);
             if (res.data.token) {
@@ -51,7 +52,7 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser);
             setLoading(false);
           });
-        });
+        
       }
       else{
         localStorage.removeItem("token")

@@ -10,7 +10,7 @@ const ProductQueue = () => {
   const {user} = UseAuth()
   const AxiousPublic = UseAxious()
   const nav = useNavigate()
-  const {data:productQueue = [] , refetch} = useQuery({
+  const {data:productQueue = [] , refetch,isLoading} = useQuery({
     queryKey:['QueeProduct'],
     queryFn:async()=>{
         const res = await AxiousPublic.get('/productQuequ')

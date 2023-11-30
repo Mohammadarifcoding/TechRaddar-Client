@@ -10,9 +10,11 @@ const CheckOutForm = ({againcheck,setOpen,accessRefetcb}) => {
   const [transectionId, settransectionId] = useState('')
   const strip = useStripe()
   const Elements = useElements()
+  const [couponCode, setCouponCode] = useState('')
   const axiousS = UseAxious()
   const [payemntLoading,setPaymentLoading] = useState(false)
-  const totalPayment = 50
+  const [totalPayment , setAmountPay] = useState(50)
+
 
   useEffect(()=>{
 
@@ -22,7 +24,23 @@ const CheckOutForm = ({againcheck,setOpen,accessRefetcb}) => {
       })
     
        
-  },[axiousS])
+  },[axiousS,totalPayment,setAmountPay])
+
+  const handleCouponChange = (event) => {
+    // Update the coupon code state when the input value changes
+    setCouponCode(event.target.value);
+    
+    
+  };
+  const  handleDiscount = async()=>{
+    console.log(couponCode)
+    axiousS.get(`/verifyCoupon/${couponCode}`)
+    .then(res => {
+      const discountPrice = totalPayment - (res.data.discount * (totalPayment / 100))
+      setAmountPay(discountPrice)
+    })
+  }
+  
     const handleSubmit = async(e)=>{
      e.preventDefault()
      
@@ -107,8 +125,13 @@ const CheckOutForm = ({againcheck,setOpen,accessRefetcb}) => {
     </>
   }
     return (
-        <form className='p-10' onSubmit={handleSubmit}>
-<div className="payment-card-element">
+      <form className='px-10 py-3' onSubmit={handleSubmit}>
+    
+      <h2 className='text-[#036b70] font-extrabold text-xl text-center pb-6'>
+        Total You Need To Pay ${totalPayment}
+      </h2>
+      
+      <div className="payment-card-element">
         <CardElement
           id="card-element"
           options={{
@@ -127,13 +150,37 @@ const CheckOutForm = ({againcheck,setOpen,accessRefetcb}) => {
           }}
         />
       </div>
-     <button  className="btn mt-10 text-white  bg-black" type="submit" disabled={!strip || !clientSecret}>
-  Pay
-</button>
-{transectionId && <p>Success</p>}
-<p className="text-red-600 mt-4">{error}</p>
+      <div className="flex items-center mt-7 mb-4">
+        <input
+          type="text"
+          onChange={handleCouponChange}
+          placeholder="Enter coupon code"
+          className="border border-gray-300 px-3 py-2 rounded-md mr-2"
+          // Add necessary state/handlers for coupon input value
+        />
+        <button
+          type="button"
 
-  </form>
+          onClick={handleDiscount}
+          className="btn text-white bg-[#00ADB5] hover:bg-[#1f6165] px-4 py-2 rounded-md"
+           // Add onClick handler for coupon check
+        >
+          Check Coupon
+        </button>
+      </div>
+      
+      <button
+        className="btn mt-2 text-white bg-black"
+        type="submit"
+        disabled={!strip || !clientSecret}
+      >
+        Pay
+      </button>
+      
+      {transectionId && <p>Success</p>}
+      <p className="text-red-600 mt-4">{error}</p>
+    </form>
+    
     );
 };
 

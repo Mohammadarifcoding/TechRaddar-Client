@@ -44,70 +44,84 @@ const AddProduct = () => {
   const handleAddProduct = async (e) => {
     e.preventDefault();
     setLoadingTime(true);
+  
     if (!access) {
-      setLoadingTime(false)
+      setLoadingTime(false);
       Swal.fire({
-        title: "Be Pro User ",
-        text: "You already crossed the free limit ",
-        icon: "error",
+        title: 'Be Pro User',
+        text: 'You already crossed the free limit',
+        icon: 'error',
       });
-     
       return;
     }
+  
     const from = e.target;
-    console.log("clicked");
     const image = fullImage;
-    console.log(image);
-    const result = await axios.post(
-      `https://api.imgbb.com/1/upload?key=aeeb86c89c07e1b579479f8b39ef94a5`,
-      { image },
-      {
-        headers: {
-          "content-type": "multipart/form-data",
-        },
-      }
-    );
-    console.log(result.data);
-
-    const ownerName = from.name.value;
-    const Product_image = result.data.data.display_url;
-    const Owner_email = from.email.value;
-    const Product_name = from.productName.value;
-    const Dated = new Date();
-    const Status = "Pending";
-    const Up_Vote = 0;
-    const External_Links = { Amazon: from.amazon.value, Ebay: from.ebay.value };
-    const Product_id = Math.floor(Math.random() * 100000) + 1;
-    const Featured = false;
-    const Description = [...from.productdes.value.split(".")];
-    const Tags = [...selected];
-    let product = {
-      Product_image,
-      ownerName,
-      Owner_email,
-      Product_id,
-      Product_name,
-      Date: Dated,
-      Status,
-      Up_Vote,
-      External_Links,
-      Featured,
-      Description,
-      Tags,
-    };
-
-    AxiouPublic.post("/products", product).then((res) => {
-      console.log(res.data);
+  
+    try {
+      const result = await axios.post(
+        'https://api.imgbb.com/1/upload?key=aeeb86c89c07e1b579479f8b39ef94a5',
+        { image },
+        {
+          headers: {
+            'content-type': 'multipart/form-data',
+          },
+        }
+      );
+  
+      // Image uploaded successfully
+      console.log('Image uploaded successfully:', result.data);
+  
+      const ownerName = from.name.value;
+      const Product_image = result.data.data.display_url;
+      const Owner_email = from.email.value;
+      const Product_name = from.productName.value;
+      const Dated = new Date();
+      const Status = 'Pending';
+      const Up_Vote = 0;
+      const External_Links = { Amazon: from.amazon.value, Ebay: from.ebay.value };
+      const Product_id = Math.floor(Math.random() * 100000) + 1;
+      const Featured = false;
+      const Description = [...from.productdes.value.split('.')];
+      const Tags = [...selected];
+      let product = {
+        Product_image,
+        ownerName,
+        Owner_email,
+        Product_id,
+        Product_name,
+        Date: Dated,
+        Status,
+        Up_Vote,
+        External_Links,
+        Featured,
+        Description,
+        Tags,
+      };
+  
+      // Now, save the product using Axios after image upload
+      await AxiouPublic.post('/products', product);
+  
       setLoadingTime(false);
-      fetch()
+      fetch();
       Swal.fire({
-        title: "Good job!",
-        text: "The product have been saved",
-        icon: "success",
+        title: 'Good job!',
+        text: 'The product has been saved',
+        icon: 'success',
       });
       e.target.reset();
-    });
+    } catch (error) {
+      // Handle the error if the image upload or product save fails
+      console.error('Error:', error);
+      setLoadingTime(false);
+      Swal.fire({
+        title: 'Error',
+        text: 'Failed to add the product',
+        icon: 'error',
+      });
+    }
   };
+  
 
   return (
     <>

@@ -20,9 +20,7 @@ import UserPremiumUser from "../../../Hooks/UserPremiumUser";
 import { GoDotFill, GoVerified } from "react-icons/go";
 import GiveAccess from "../../../Hooks/GiveAccess";
 
-const stripPromise = loadStripe(
-  "pk_test_51OEkzgLa09z8fqkr4WvYcZCztbeiCHAUoNw3rBeZrb9L5vwvwqxmhC30zBRiAdbbLL6eqbDFz7bp5DEX4hEdA5oP00lMBN79S0"
-);
+const stripPromise = loadStripe(import.meta.env.VITE_STRIPEPROMISE);
 
 const MyProfile = () => {
   const { user } = UseAuth();

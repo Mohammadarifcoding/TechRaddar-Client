@@ -10,7 +10,7 @@ const Coupons = ({data}) => {
     setOpen(!open);
   };
     return (
-        <tr >
+        <tr className='border'>
         <td className=" px-6 py-4 text-center">{couponCode}</td>
         <td className=" px-6 py-4 text-center">
           <button

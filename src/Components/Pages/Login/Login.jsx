@@ -2,11 +2,13 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import UseAuth from '../../Hooks/UseAuth';
 import Swal from 'sweetalert2';
+import UseAxious from '../../Hooks/UseAxious';
 
 const Login = () => {
     const {Google,In} = UseAuth()
     const nav = useNavigate()
     const location = useLocation()
+    const AxiousPublic = UseAxious()
     const from = location?.state?.from?.pathname || '/'
     
     const handleSignIN = (e)=>{
@@ -41,6 +43,11 @@ const Login = () => {
     const handleGoogle = ()=>{
       Google()
       .then(res => {
+        const loggedUser = { email: res.user.email , name : res.user.displayName };
+        AxiousPublic.post("/users",  loggedUser )
+        .then((res) => {
+          console.log(res.data)
+        })
          Swal.fire({
           title: "Your account have been created.",
           width: 600,
@@ -57,7 +64,13 @@ const Login = () => {
         nav(from, { replace: true });
        
        })
-      .catch()
+      .catch(err=>{
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong",
+        });
+      })
 }
 
     return (

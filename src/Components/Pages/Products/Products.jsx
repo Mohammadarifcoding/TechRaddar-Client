@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaArrowRight, FaSearch } from "react-icons/fa";
-import tags from "../../../../public/Data/Tags";
+
 import { WithContext as ReactTags } from "react-tag-input";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,18 +11,26 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 
 
-const suggestions = tags.map((country) => {
-  return {
-    id: country,
-    text: country,
-  };
-});
+
 
 const Products = () => {
   const [tagsList, setTagsList] = useState([]);
   const [item,setItems] = useState([])
   const [totalItem,setTotalItemnum] = useState(0)
+  const [tags ,setTags ] = useState([])
+  useEffect(()=>{
+    fetch('/Data/Tags.json')
+    .then(res => res.json())
+    .then(data => setTags(data))
+  },[])
 
+
+  const suggestions = tags.map((country) => {
+    return {
+      id: country,
+      text: country,
+    };
+  });
   useEffect(()=>{
     AxiousPublic.get('/itemlength')
     .then(res => {

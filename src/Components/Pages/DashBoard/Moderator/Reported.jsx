@@ -11,7 +11,8 @@ import { MdAutoAwesomeMosaic } from "react-icons/md";
 const Reported = () => {
     const AxiouPublic = UseAxious()
     const nav = useNavigate()
-    const {data:reporteProduct = [],refetch:refetchReport} = useQuery({
+
+    const {data:reporteProduct = [],refetch:refetchReport, isLoading} = useQuery({
       queryKey:['reported'],
       queryFn:async()=>{
         const res = await AxiouPublic.get('/reportedProducts')
@@ -55,10 +56,28 @@ const Reported = () => {
       nav(`/productDetails/${productId}`)
     }
     return (
-        <div className='bg-[#222831] min-h-[calc(100vh-69px)] pt-10 xl:px-10 p-4 pb-10'>
-        <h2 className="text-center text-[#EEEEEE] text-4xl font-bold">Reported Products</h2>
-      
-        {reporteProduct?.length === 0 ? (
+        <>
+        
+        {isLoading && (
+            <div className='bg-[#222831] min-h-[calc(100vh-69px)] pt-10 xl:px-10 p-4 pb-10'>
+           <div className="absolute w-full mx-auto mt-[25vh]  flex justify-center items-center text-center">
+            <div className="loading-wave">
+              <div className="loading-bar" />
+              <div className="loading-bar" />
+              <div className="loading-bar" />
+              <div className="loading-bar" />
+            </div>
+          </div>   
+            </div>
+          
+        )}
+        
+          <div>
+        {!isLoading && (
+          <>
+          <div className='bg-[#222831] min-h-[calc(100vh-69px)] pt-10 relative xl:px-10 p-4 pb-10'>
+           <h2 className="text-center text-[#EEEEEE] text-4xl font-bold">Reported Products</h2>
+           {reporteProduct?.length === 0 ? (
           <div className="flex flex-col items-center justify-center mt-14">
             <p className="text-white text-lg mb-4">No reported products found</p>
             <MdReportOff className="w-48 h-48 mb-8 text-[#0f848a]" />
@@ -103,7 +122,19 @@ const Reported = () => {
             </table>
           </div>
         )}
-      </div>
+          </div>
+          </>
+         
+        )}
+        
+       </div>
+        
+        
+        </>
+     
+
+       
+      
       
     );
 };
