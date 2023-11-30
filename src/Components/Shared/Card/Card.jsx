@@ -67,7 +67,7 @@ const Card = ({ featured, data, trend }) => {
       return
     }
     console.log("vote 1 done");
-    AxiousPublic.post(`/upVote/${Product_id}/${user?.email}`).then((res) => {
+    AxiousPublic.post(`/upVote/${Product_id}/${user?.email}/${Owner_email}`).then((res) => {
       console.log(res.data);
       AxiousPublic.put(`/updateUPVote/${Product_id}`, {
         vote: UpvoteData?.length,
@@ -85,7 +85,7 @@ const Card = ({ featured, data, trend }) => {
       return
     }
     console.log("downvote 1 done");
-    AxiousPublic.post(`/downVote/${Product_id}/${user?.email}`).then((res) => {
+    AxiousPublic.post(`/downVote/${Product_id}/${user?.email}/${Owner_email}`).then((res) => {
       console.log(res.data);
       AxiousPublic.put(`/updateUPVote/${Product_id}`, {
         vote: UpvoteData?.length,
@@ -99,7 +99,7 @@ const Card = ({ featured, data, trend }) => {
   };
   console.log(access)
   return (
-    <div className="relative shadow-2xl flex w-full max-w-[26rem] border-[#00ADB5] group border-[4px] mx-auto flex-col rounded-xl bg-white text-gray-700  overflow-hidden">
+    <div className="relative shadow-2xl flex w-full max-w-[26rem] group border-[#00ADB5]  border-[1px] mx-auto flex-col rounded-xl bg-white text-gray-700  overflow-hidden">
       <div className="relative mx-4 mt-4 rounded-xl overflow-hidden bg-[#222831] shadow-lg">
         <div className="group-hover:scale-125 transition-transform ease-in-out duration-300">
           <img
