@@ -1,4 +1,4 @@
-# TechRaddar
+# TechRaddar 
 
 Welcome to TechRaddar, your one-stop destination for knowing about tech products and knowing about the treding tech products.
 
@@ -7,12 +7,12 @@ Welcome to TechRaddar, your one-stop destination for knowing about tech products
 Visit TechRaddar at [https://arif-12-assignment.web.app/](https://arif-12-assignment.web.app/)
 
 
-## Client Side Repo 
+## Client Side Repository 
 
 The client side code repo of this website [https://github.com/programming-hero-web-course1/b8a12-client-side-Mohammadarifcoding](https://github.com/programming-hero-web-course1/b8a12-client-side-Mohammadarifcoding)
 
 
-## Server Side Repo
+## Server Side Repository
 
 The server side code repo of this website [https://github.com/programming-hero-web-course1/b8a12-server-side-Mohammadarifcoding](https://github.com/programming-hero-web-course1/b8a12-server-side-Mohammadarifcoding)
 
