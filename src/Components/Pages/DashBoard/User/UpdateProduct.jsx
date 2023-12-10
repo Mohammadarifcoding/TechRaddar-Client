@@ -1,20 +1,23 @@
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { IoAdd } from "react-icons/io5";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { TagsInput } from "react-tag-input-component";
 import UseAxious from "../../../Hooks/UseAxious";
 import UseAuth from "../../../Hooks/UseAuth";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
+import UseMyProducts from "../../../Hooks/UseMyProducts";
 
 const UpdateProduct = () => {
   const productItemData = useLoaderData();
+  const [productData,allProductdata,isLoading] = UseMyProducts()
   console.log(productItemData)
   const value = useParams()
   console.log(value)
   const AxiouPublic = UseAxious();
+  
   //    const { data:productItemData = {} , refetch ,isLoading  } = useQuery({
   //     queryKey:['updateProduct',productId],
   //     queryFn:async()=>{
@@ -22,6 +25,7 @@ const UpdateProduct = () => {
   //         return res.data
   //     }
   //    })
+  const nav = useNavigate()
 
   const {
     Product_name,
@@ -92,9 +96,23 @@ const UpdateProduct = () => {
         Description:productdes
     }
    AxiouPublic.patch(`/productsData/${Product_id}`,productValuedata)
-   .then(res => console.log(res.data))
+   .then(res => {
+    
+    
+    console.log(res.data)
     console.log(productValuedata)
-
+    allProductdata()
+    nav('/dashboard/myProducts')
+    Swal.fire({
+      title: "Good job!",
+      text: "Updated the product details",
+      icon: "success"
+    });
+  
+  })
+   
+    
+    
     
   }
   //   if(isLoading){

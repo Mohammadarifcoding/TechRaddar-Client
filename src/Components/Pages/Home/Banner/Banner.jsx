@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import NormalButton from '../../../Shared/Button/NormalButton';
+import GettingAxious from '../../../Hooks/GettingAxious';
 
 const Banner = () => {
+   
+    const value = GettingAxious()
+ 
+
+    useEffect(()=>{
+         document.title ='hellow world'
+    },[])
+
+    value.get('/products')
+
+
     return (
         <div className='max-h-[700px] py-10    bg-cover bg-center w-full h-full bg-[url("/images/superbg.jpg")]'>
            

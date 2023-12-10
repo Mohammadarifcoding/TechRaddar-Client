@@ -5,18 +5,14 @@ import UseAxious from '../../../Hooks/UseAxious';
 import Swal from 'sweetalert2';
 import { Link, useNavigate } from 'react-router-dom';
 import { GrTechnology } from "react-icons/gr";
+import UseMyProducts from '../../../Hooks/UseMyProducts';
 
 const MyProducts = () => {
     const {user} = UseAuth()
    const AxiousPublic = UseAxious()
    const nav = useNavigate()
-    const {data : productData = [] , refetch : allProductdata , isLoading} = useQuery({
-      queryKey:['productMange',user?.email],
-      queryFn : async ()=>{
-        const res = await AxiousPublic.get(`/gettingOwnProduct/${user?.email}`)
-        return res.data
-      }
-    })
+   const [productData,allProductdata,isLoading] = UseMyProducts()
+   
     if(isLoading){
       return (<div className=" w-full min-h-screen  flex justify-center items-center ">
       <div className="loading-wave">

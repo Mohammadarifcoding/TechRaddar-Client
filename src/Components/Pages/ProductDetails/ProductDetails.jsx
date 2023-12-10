@@ -170,9 +170,9 @@ const ProductDetails = () => {
               <h2 className="md:text-4xl  flex justify-start text-[#222831]  group-hover:underline xl:text-start font-bold text-center sm:text-3xl text-2xl">
                 {Product_name} <BiLink></BiLink>{" "}
               </h2>
-              <div className="flex flex-col mt-3   font-semibold text-[#393E46] justify-start ">
+              <div className="flex flex-col mt-3 flex-wrap   font-semibold text-[#393E46] justify-start ">
                 {Description?.slice(0, 7).map((value,inx) => (
-                  <div key={inx} className="max-w-xl flex  text-start ">{value}</div>
+                  <div key={inx} className="max-w-xl flex-wrap flex flex-col overflow-hidden text-start ">{value}</div>
                   
                 ))}
                 

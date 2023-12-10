@@ -53,6 +53,7 @@ import ManageCoupon from "../Pages/DashBoard/Admin/ManageCoupon/ManageCoupon";
     {
       path:'/dashboard',
       element:<PrivateRoute><DashBoard></DashBoard></PrivateRoute>,
+      errorElement:<Error></Error>,
       children:[
         {
           path:'myprofile',

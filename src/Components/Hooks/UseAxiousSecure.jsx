@@ -23,8 +23,7 @@ const UseAxiousSecure = () => {
        return Promise.reject(error)
     })
 
-
-    axious.interceptors.response.use(function (res){
+ axious.interceptors.response.use(function (res){
         return res
     },async function (error){
         const resposne = error.response
@@ -36,6 +35,7 @@ const UseAxiousSecure = () => {
         return Promise.reject(error)
     })
    },[])
+   
  
   return axious
     

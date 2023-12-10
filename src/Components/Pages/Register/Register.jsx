@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDropzone } from "react-dropzone";
 
@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import UseAuth from "../../Hooks/UseAuth";
 import axios from "axios";
 import UseAxious from "../../Hooks/UseAxious";
+import { useQuery } from "@tanstack/react-query";
 
 const Register = () => {
   const { creatUser, update , Google } = UseAuth();
@@ -154,6 +155,8 @@ const Register = () => {
         });
        })
  }
+
+
  if(regLoading){
   return (
     <div className="flex justify-center items-center mt-[40vh]">

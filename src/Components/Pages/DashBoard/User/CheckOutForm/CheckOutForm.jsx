@@ -36,7 +36,7 @@ const CheckOutForm = ({againcheck,setOpen,accessRefetcb}) => {
     console.log(couponCode)
     axiousS.get(`/verifyCoupon/${couponCode}`)
     .then(res => {
-      const discountPrice = totalPayment - (res.data.discount * (totalPayment / 100))
+      const discountPrice = 50 - (res.data.discount * (50 / 100))
       setAmountPay(discountPrice)
     })
   }
