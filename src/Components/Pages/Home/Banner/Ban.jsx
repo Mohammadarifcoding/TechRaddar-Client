@@ -107,7 +107,7 @@ const Ban = () => {
             <img className="block" src="saturn-assets/logos/brands/logo-example3.png" alt />
           </div>
           <div className="w-1/3 px-4">
-            <img className="block" src="saturn-assets/logos/brands/logo-example2.png" alt />
+          <img className="block" src="saturn-assets/logos/brands/logo-example2.png" alt />
           </div>
           <div className="w-1/3 px-4">
             <img className="block" src="saturn-assets/logos/brands/logo-example1.png" alt />
